@@ -4,7 +4,7 @@ services:
   # ----------------------------------------------------------------------------
   - type: web
     name: meetmind-ai-backend
-    runtime: node
+    env: node
     plan: free
     region: oregon
     buildCommand: npm install && npm --workspace=server run build
@@ -39,7 +39,7 @@ services:
   # ----------------------------------------------------------------------------
   - type: web
     name: meetmind-ai-frontend
-    runtime: static
+    env: static
     plan: free
     region: oregon
     buildCommand: npm install && npm --workspace=client run build
