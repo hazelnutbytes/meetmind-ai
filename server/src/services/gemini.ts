@@ -1,3 +1,4 @@
+import { GoogleGenAI } from '@google/genai';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import fs from 'fs';
 import path from 'path';
@@ -15,7 +16,6 @@ function loadPromptFile(version: PromptVersion): string {
     const filePath = path.resolve(__dirname, `../../../prompts/${filename}`);
     if (fs.existsSync(filePath)) {
       const content = fs.readFileSync(filePath, 'utf-8');
-      // Extract codeblock between ```text and ``` if present, or return full content
       const match = content.match(/```text([\s\S]*?)```/);
       if (match && match[1]) {
         return match[1].trim();
@@ -26,7 +26,6 @@ function loadPromptFile(version: PromptVersion): string {
     console.warn(`Could not load prompt file for ${version}, using built-in template:`, err);
   }
 
-  // Fallback prompt strings
   if (version === 'v1') {
     return `You are an AI meeting assistant.
 Please read the following meeting transcript and extract:
@@ -98,21 +97,53 @@ export async function processTranscriptWithGemini(
     throw new Error('GEMINI_API_KEY is not configured. Please set GEMINI_API_KEY in your .env file.');
   }
 
-  const genAI = new GoogleGenerativeAI(config.geminiApiKey);
-
-  // Use configured model or fallbacks
-  const modelNames = [config.geminiModel, 'gemini-2.5-flash', 'gemini-1.5-flash', 'gemini-pro'];
   let promptTemplate = loadPromptFile(version);
-
-  // Substitute variables
   const prompt = promptTemplate
     .replace(/{{MEETING_TITLE}}/g, title)
     .replace(/{{MEETING_DATE}}/g, meetingDate)
     .replace(/{{TRANSCRIPT}}/g, transcript);
 
+  const modelCandidates = [
+    config.geminiModel,
+    'gemini-3.8-flash',
+    'gemini-3.5-flash',
+    'gemini-flash-latest',
+    'gemini-2.5-flash'
+  ];
+
+  // Try 1: Modern @google/genai SDK
+  const ai = new GoogleGenAI({ apiKey: config.geminiApiKey });
+  for (const modelName of modelCandidates) {
+    try {
+      const response = await ai.models.generateContent({
+        model: modelName,
+        contents: prompt,
+        config: {
+          responseMimeType: 'application/json',
+          temperature: version === 'v3' ? 0.1 : 0.4
+        }
+      });
+
+      if (response && response.text) {
+        const cleaned = response.text
+          .replace(/^```json\s*/i, '')
+          .replace(/^```\s*/i, '')
+          .replace(/```\s*$/i, '')
+          .trim();
+
+        const parsed: StructuredMeetingOutput = JSON.parse(cleaned);
+        return sanitizeStructuredOutput(parsed);
+      }
+    } catch (err: any) {
+      console.warn(`[GenAI SDK] Model ${modelName} attempt:`, err.message);
+    }
+  }
+
+  // Try 2: Fallback to @google/generative-ai SDK
+  const genAI = new GoogleGenerativeAI(config.geminiApiKey);
   let lastError: any = null;
 
-  for (const modelName of modelNames) {
+  for (const modelName of modelCandidates) {
     try {
       const model = genAI.getGenerativeModel({
         model: modelName,
@@ -125,7 +156,6 @@ export async function processTranscriptWithGemini(
       const result = await model.generateContent(prompt);
       const text = result.response.text();
 
-      // Clean text if wrapped in markdown code blocks
       const cleaned = text
         .replace(/^```json\s*/i, '')
         .replace(/^```\s*/i, '')
@@ -135,13 +165,11 @@ export async function processTranscriptWithGemini(
       const parsed: StructuredMeetingOutput = JSON.parse(cleaned);
       return sanitizeStructuredOutput(parsed);
     } catch (err: any) {
-      console.warn(`Failed with model ${modelName}:`, err.message);
       lastError = err;
-      // If error is JSON parse error or rate limit, proceed to next model
     }
   }
 
-  throw new Error(`Gemini processing failed: ${lastError?.message || 'Unknown error'}`);
+  throw new Error(`Gemini processing failed: ${lastError?.message || 'Unable to generate response'}`);
 }
 
 function sanitizeStructuredOutput(output: any): StructuredMeetingOutput {
