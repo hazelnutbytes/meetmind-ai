@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <rect width="32" height="32" rx="8" fill="#D96C4F"/>
+  <!-- Primary Sparkle -->
+  <path d="M14 6C14 10.418 10.418 14 6 14C10.418 14 14 17.582 14 22C14 17.582 17.582 14 22 14C17.582 14 14 10.418 14 6Z" fill="#FBF9F5"/>
+  <!-- Secondary Sparkle -->
+  <path d="M23 18C23 20.209 21.209 22 19 22C21.209 22 23 23.791 23 26C23 23.791 24.791 22 27 22C24.791 22 23 20.209 23 18Z" fill="#F6F3EC" fill-opacity="0.9"/>
+  <!-- Accent Sparkle Dot -->
+  <circle cx="23" cy="9" r="1.5" fill="#F6F3EC"/>
+</svg>
