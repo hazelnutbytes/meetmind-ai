@@ -40,7 +40,6 @@ services:
   - type: web
     name: meetmind-ai-frontend
     env: static
-    plan: free
     buildCommand: npm install && npm --workspace=client run build
     staticPublishPath: client/dist
     routes:
