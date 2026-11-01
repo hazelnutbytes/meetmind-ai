@@ -18,9 +18,16 @@ export const config = {
   supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY || '',
   supabaseWebhookSecret: process.env.SUPABASE_WEBHOOK_SECRET || '',
   nodeEnv: process.env.NODE_ENV || 'development',
-  hasGeminiKey: Boolean(process.env.GEMINI_API_KEY && process.env.GEMINI_API_KEY.trim().length > 5),
+  hasGeminiKey: Boolean(
+    process.env.GEMINI_API_KEY &&
+    process.env.GEMINI_API_KEY.trim().length > 5 &&
+    !process.env.GEMINI_API_KEY.includes('your_gemini_api_key')
+  ),
   hasSupabase: Boolean(
     (process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL) &&
-    (process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY)
+    !process.env.SUPABASE_URL?.includes('your_supabase') &&
+    !process.env.VITE_SUPABASE_URL?.includes('your_supabase') &&
+    (process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY) &&
+    !process.env.SUPABASE_SERVICE_ROLE_KEY?.includes('your_supabase')
   )
 };
