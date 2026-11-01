@@ -13,15 +13,19 @@ const app = express();
 
 // Middleware
 const allowedOriginEnv = process.env.CLIENT_URL || process.env.CORS_ORIGIN;
+let originList: (string | RegExp)[] = ['http://localhost:3000', 'http://127.0.0.1:3000'];
+if (allowedOriginEnv) {
+  const clean = allowedOriginEnv.trim().replace(/\/+$/, '');
+  originList.push(clean);
+  if (!clean.startsWith('http')) {
+    originList.push(`https://${clean}`, `http://${clean}`);
+  } else {
+    originList.push(clean.replace(/^https?:\/\//, ''));
+  }
+}
+
 const corsOptions: cors.CorsOptions = {
-  origin: allowedOriginEnv
-    ? [
-        allowedOriginEnv,
-        allowedOriginEnv.replace(/\/+$/, ''),
-        'http://localhost:3000',
-        'http://127.0.0.1:3000'
-      ]
-    : '*',
+  origin: allowedOriginEnv ? (originList as any) : '*',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'x-webhook-secret']

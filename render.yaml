@@ -21,7 +21,7 @@ services:
         fromService:
           type: web
           name: meetmind-ai-frontend
-          property: url
+          property: host
       # Secrets entered in Render Dashboard settings:
       - key: GEMINI_API_KEY
         sync: false
@@ -41,7 +41,6 @@ services:
     name: meetmind-ai-frontend
     env: static
     plan: free
-    region: oregon
     buildCommand: npm install && npm --workspace=client run build
     staticPublishPath: client/dist
     routes:
@@ -53,4 +52,4 @@ services:
         fromService:
           type: web
           name: meetmind-ai-backend
-          property: url
+          property: host

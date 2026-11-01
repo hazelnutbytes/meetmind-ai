@@ -9,7 +9,9 @@ import {
   PromptVersion
 } from '../types';
 
-const API_BASE = (import.meta.env.VITE_API_URL ? String(import.meta.env.VITE_API_URL).replace(/\/+$/, '') : '') + '/api';
+const rawApiUrl = import.meta.env.VITE_API_URL ? String(import.meta.env.VITE_API_URL).trim().replace(/\/+$/, '') : '';
+const formattedApiUrl = rawApiUrl && !rawApiUrl.startsWith('http') ? `https://${rawApiUrl}` : rawApiUrl;
+const API_BASE = formattedApiUrl ? `${formattedApiUrl}/api` : '/api';
 
 export const api = {
   // Meetings
