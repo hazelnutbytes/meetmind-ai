@@ -1,0 +1,154 @@
+[
+  {
+    "id": "TC-01",
+    "name": "Normal Meeting",
+    "description": "Cross-functional product sync where participants discuss launch plans, reach consensus on launch date, and agree on clear deliverables with owners and deadlines.",
+    "meeting_title": "Q3 Product Launch Sync",
+    "meeting_date": "2026-10-15",
+    "transcript": "Sarah: Good morning team. Let's finalize the Q3 launch checklist.\nAlex: I have finished the performance benchmarks. Database latency dropped by 35%.\nSarah: That's great news. So we all agree: the official public launch date will be November 10th, 2026.\nDavid: Agreed, that gives marketing enough runway.\nSarah: Perfect. David, can you prepare the press release and email blast by October 25th, 2026?\nDavid: Yes, I will draft both and share with the team by October 25th.\nAlex: What about the API documentation?\nSarah: Alex, please update the external developer docs by November 1st, 2026.\nAlex: Done, I'll have the API docs finalized and reviewed by November 1st.\nSarah: Thanks everyone. Meeting adjourned.",
+    "expected_output": {
+      "decisions": [
+        {
+          "decision": "The official public launch date is set for November 10th, 2026.",
+          "context": "Agreed by Sarah and David with consensus from the team."
+        }
+      ],
+      "action_items": [
+        {
+          "task": "Prepare the press release and email blast",
+          "owner": "David",
+          "deadline": "2026-10-25",
+          "priority": "high"
+        },
+        {
+          "task": "Update the external developer documentation",
+          "owner": "Alex",
+          "deadline": "2026-11-01",
+          "priority": "medium"
+        }
+      ],
+      "missing_information": []
+    }
+  },
+  {
+    "id": "TC-02",
+    "name": "Multiple Action Items",
+    "description": "Sprint planning session with several team members assigning multiple distinct tasks with specific responsibilities and deadlines.",
+    "meeting_title": "Sprint 42 Architecture & Security Review",
+    "meeting_date": "2026-10-20",
+    "transcript": "Marcus: Team, let's distribute the security audit remediation tasks.\nPriya: I reviewed the penetration test report. We have three urgent vulnerability patches.\nMarcus: Great. Let's decide: we are migrating all authentication tokens to short-lived JWTs starting this sprint.\nPriya: Definitely, that resolves finding #1.\nMarcus: Priya, please implement the JWT rotation middleware by October 28th, 2026.\nPriya: Will do, I'll submit the PR by October 28th.\nMarcus: Liam, we need the Redis rate-limiter deployed to staging by November 3rd, 2026.\nLiam: Got it, I will take the Redis rate-limiter and finish it by November 3rd.\nMarcus: Elena, can you audit the S3 bucket access policies by October 30th, 2026?\nElena: Yes, I will audit the bucket policies and report any public permissions by October 30th.\nMarcus: And I will coordinate with DevOps for the production rollout on November 5th, 2026.",
+    "expected_output": {
+      "decisions": [
+        {
+          "decision": "Migrate all authentication tokens to short-lived JWTs starting this sprint.",
+          "context": "Marcus proposed and Priya consented to resolve audit finding #1."
+        }
+      ],
+      "action_items": [
+        {
+          "task": "Implement JWT rotation middleware",
+          "owner": "Priya",
+          "deadline": "2026-10-28",
+          "priority": "high"
+        },
+        {
+          "task": "Deploy Redis rate-limiter to staging",
+          "owner": "Liam",
+          "deadline": "2026-11-03",
+          "priority": "medium"
+        },
+        {
+          "task": "Audit S3 bucket access policies",
+          "owner": "Elena",
+          "deadline": "2026-10-30",
+          "priority": "high"
+        },
+        {
+          "task": "Coordinate with DevOps for production rollout",
+          "owner": "Marcus",
+          "deadline": "2026-11-05",
+          "priority": "medium"
+        }
+      ],
+      "missing_information": []
+    }
+  },
+  {
+    "id": "TC-03",
+    "name": "Missing Owner",
+    "description": "Operations discussion where an urgent infrastructure task is identified and scheduled, but no individual participant is assigned ownership.",
+    "meeting_title": "Infrastructure Incident Follow-up",
+    "meeting_date": "2026-10-22",
+    "transcript": "Rachel: The SSL certificate on our primary payment gateway expires in two weeks.\nTom: That could cause a complete outage if not renewed.\nRachel: Exactly. We decided that the certificate renewal must happen during the maintenance window on October 29th, 2026.\nTom: Right. Someone needs to renew the SSL certificate and update the secrets store by October 29th, 2026. Who has access to the certificate authority portal?\nRachel: Neither of us has the root cert credentials right now, we need to find out who holds the keys.\nTom: Okay, we definitely need that renewal done by October 29th, but we haven't assigned who will actually execute it yet.\nRachel: Let's flag that as unassigned.",
+    "expected_output": {
+      "decisions": [
+        {
+          "decision": "SSL certificate renewal must happen during the maintenance window on October 29th, 2026.",
+          "context": "Agreed by Rachel and Tom to prevent gateway outage."
+        }
+      ],
+      "action_items": [
+        {
+          "task": "Renew SSL certificate and update the secrets store",
+          "owner": null,
+          "deadline": "2026-10-29",
+          "priority": "high"
+        }
+      ],
+      "missing_information": [
+        "Task 'Renew SSL certificate and update the secrets store' has no assigned owner because neither participant held root credentials."
+      ]
+    }
+  },
+  {
+    "id": "TC-04",
+    "name": "Missing Deadline",
+    "description": "Design alignment meeting where a participant willingly accepts ownership of a crucial design deliverable, but no target completion date is established.",
+    "meeting_title": "Design System Modernization",
+    "meeting_date": "2026-10-25",
+    "transcript": "Maya: We need to revamp our dark mode contrast ratios to meet WCAG AA standards.\nCarlos: I totally agree, our accessibility audit flagged several grey-on-dark components.\nMaya: Decision confirmed: we will officially adopt WCAG AA compliance as our baseline.\nCarlos: I will take full ownership of auditing the component library and creating the new dark mode token set.\nMaya: Awesome, thank you Carlos. Did we set a deadline for this?\nCarlos: No deadline was set yet because we need to first see how many components need token refactoring.\nMaya: Sounds good, just start working on it and we will schedule the delivery date next month.",
+    "expected_output": {
+      "decisions": [
+        {
+          "decision": "Adopt WCAG AA compliance as the baseline standard for design system dark mode.",
+          "context": "Consensus between Maya and Carlos following accessibility audit findings."
+        }
+      ],
+      "action_items": [
+        {
+          "task": "Audit component library and create new dark mode token set",
+          "owner": "Carlos",
+          "deadline": null,
+          "priority": "medium"
+        }
+      ],
+      "missing_information": [
+        "Action item for Carlos lacks an agreed completion deadline."
+      ]
+    }
+  },
+  {
+    "id": "TC-05",
+    "name": "Edge Case: Ambiguous or Contradictory Discussion",
+    "description": "High-friction debate where proposals are suggested but rejected/unresolved, and conflicting deadlines are stated without consensus.",
+    "meeting_title": "Budget Allocation & CRM Migration Debate",
+    "meeting_date": "2026-10-27",
+    "transcript": "Linda: Should we migrate from Salesforce to HubSpot next quarter? It could save us $40,000 annually.\nKevin: I strongly disagree. The migration overhead and custom integrations will cost twice that. We should NOT migrate right now.\nLinda: Fair point, let's table that discussion. We are NOT making any decision on CRM migration today.\nKevin: Regarding the customer feedback survey analysis, I thought about doing it by November 2nd.\nLinda: Wait, November 2nd is impossible because the raw data export won't be ready until November 8th. You should do it by November 15th.\nKevin: I'm on vacation starting November 10th, so November 15th doesn't work for me either. We haven't settled on a workable date.\nLinda: Okay, neither date works. Let's leave the deadline undecided until we check next week's schedule.\nKevin: Also, someone brought up redesigning the billing invoice template, but nobody volunteered and we didn't agree whether it's even needed.",
+    "expected_output": {
+      "decisions": [],
+      "action_items": [
+        {
+          "task": "Customer feedback survey analysis",
+          "owner": "Kevin",
+          "deadline": null,
+          "priority": "medium"
+        }
+      ],
+      "missing_information": [
+        "No decision made on CRM migration (tabled due to disagreement).",
+        "Conflicting deadlines mentioned for survey analysis (Nov 2 vs Nov 15); deadline left undecided.",
+        "Billing invoice redesign was mentioned as an unconfirmed idea with no owner or agreement."
+      ]
+    }
+  }
+]

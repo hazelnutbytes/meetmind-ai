@@ -1,0 +1,21 @@
+{
+  "name": "meetmind-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MeetMind AI – Intelligent Meeting Minutes and Action Tracker",
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "npm --workspace=server run dev",
+    "dev:client": "npm --workspace=client run dev",
+    "build": "npm --workspace=server run build && npm --workspace=client run build",
+    "start": "npm --workspace=server start",
+    "test:eval": "npm --workspace=server run test:eval"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

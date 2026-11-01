@@ -1,0 +1,2047 @@
+{
+  "meetings": [
+    {
+      "id": "f7f9992c-e35e-4ac8-a927-4f0fd0cad1ed",
+      "title": "Budget Allocation & CRM Migration Debate",
+      "meeting_date": "2026-10-27",
+      "transcript": "Linda: Should we migrate from Salesforce to HubSpot next quarter? It could save us $40,000 annually.\nKevin: I strongly disagree. The migration overhead and custom integrations will cost twice that. We should NOT migrate right now.\nLinda: Fair point, let's table that discussion. We are NOT making any decision on CRM migration today.\nKevin: Regarding the customer feedback survey analysis, I thought about doing it by November 2nd.\nLinda: Wait, November 2nd is impossible because the raw data export won't be ready until November 8th. You should do it by November 15th.\nKevin: I'm on vacation starting November 10th, so November 15th doesn't work for me either. We haven't settled on a workable date.\nLinda: Okay, neither date works. Let's leave the deadline undecided until we check next week's schedule.\nKevin: Also, someone brought up redesigning the billing invoice template, but nobody volunteered and we didn't agree whether it's even needed.",
+      "processing_status": "completed",
+      "created_at": "2026-11-01T17:58:33.178Z",
+      "updated_at": "2026-11-01T17:58:33.178Z"
+    },
+    {
+      "id": "a47d0f22-c172-481a-be8c-fd65b1242e16",
+      "title": "Design System Modernization",
+      "meeting_date": "2026-10-25",
+      "transcript": "Maya: We need to revamp our dark mode contrast ratios to meet WCAG AA standards.\nCarlos: I totally agree, our accessibility audit flagged several grey-on-dark components.\nMaya: Decision confirmed: we will officially adopt WCAG AA compliance as our baseline.\nCarlos: I will take full ownership of auditing the component library and creating the new dark mode token set.\nMaya: Awesome, thank you Carlos. Did we set a deadline for this?\nCarlos: No deadline was set yet because we need to first see how many components need token refactoring.\nMaya: Sounds good, just start working on it and we will schedule the delivery date next month.",
+      "processing_status": "completed",
+      "created_at": "2026-11-01T17:58:33.177Z",
+      "updated_at": "2026-11-01T17:58:33.177Z"
+    },
+    {
+      "id": "47d00aa7-51ef-4e1a-8fe2-7135d8d2f392",
+      "title": "Infrastructure Incident Follow-up",
+      "meeting_date": "2026-10-22",
+      "transcript": "Rachel: The SSL certificate on our primary payment gateway expires in two weeks.\nTom: That could cause a complete outage if not renewed.\nRachel: Exactly. We decided that the certificate renewal must happen during the maintenance window on October 29th, 2026.\nTom: Right. Someone needs to renew the SSL certificate and update the secrets store by October 29th, 2026. Who has access to the certificate authority portal?\nRachel: Neither of us has the root cert credentials right now, we need to find out who holds the keys.\nTom: Okay, we definitely need that renewal done by October 29th, but we haven't assigned who will actually execute it yet.\nRachel: Let's flag that as unassigned.",
+      "processing_status": "completed",
+      "created_at": "2026-11-01T17:58:33.176Z",
+      "updated_at": "2026-11-01T17:58:33.176Z"
+    },
+    {
+      "id": "91bd387d-2455-424c-b825-9aad5e1ef9fb",
+      "title": "Sprint 42 Architecture & Security Review",
+      "meeting_date": "2026-10-20",
+      "transcript": "Marcus: Team, let's distribute the security audit remediation tasks.\nPriya: I reviewed the penetration test report. We have three urgent vulnerability patches.\nMarcus: Great. Let's decide: we are migrating all authentication tokens to short-lived JWTs starting this sprint.\nPriya: Definitely, that resolves finding #1.\nMarcus: Priya, please implement the JWT rotation middleware by October 28th, 2026.\nPriya: Will do, I'll submit the PR by October 28th.\nMarcus: Liam, we need the Redis rate-limiter deployed to staging by November 3rd, 2026.\nLiam: Got it, I will take the Redis rate-limiter and finish it by November 3rd.\nMarcus: Elena, can you audit the S3 bucket access policies by October 30th, 2026?\nElena: Yes, I will audit the bucket policies and report any public permissions by October 30th.\nMarcus: And I will coordinate with DevOps for the production rollout on November 5th, 2026.",
+      "processing_status": "completed",
+      "created_at": "2026-11-01T17:58:33.174Z",
+      "updated_at": "2026-11-01T17:58:33.174Z"
+    },
+    {
+      "id": "cd8cf742-c73d-4b91-9fb0-b6ccdbb7d3a6",
+      "title": "Q3 Product Launch Sync",
+      "meeting_date": "2026-10-15",
+      "transcript": "Sarah: Good morning team. Let's finalize the Q3 launch checklist.\nAlex: I have finished the performance benchmarks. Database latency dropped by 35%.\nSarah: That's great news. So we all agree: the official public launch date will be November 10th, 2026.\nDavid: Agreed, that gives marketing enough runway.\nSarah: Perfect. David, can you prepare the press release and email blast by October 25th, 2026?\nDavid: Yes, I will draft both and share with the team by October 25th.\nAlex: What about the API documentation?\nSarah: Alex, please update the external developer docs by November 1st, 2026.\nAlex: Done, I'll have the API docs finalized and reviewed by November 1st.\nSarah: Thanks everyone. Meeting adjourned.",
+      "processing_status": "completed",
+      "created_at": "2026-11-01T17:58:33.173Z",
+      "updated_at": "2026-11-01T17:58:33.173Z"
+    }
+  ],
+  "meeting_minutes": [
+    {
+      "id": "c2257d30-843a-464b-adf9-5b2b93e22071",
+      "meeting_id": "cd8cf742-c73d-4b91-9fb0-b6ccdbb7d3a6",
+      "summary": "Official meeting synthesis for Q3 Product Launch Sync: Participants aligned on operational priorities and milestones, strictly ratifying decisions with consensus while isolating unassigned or unresolved items.",
+      "key_discussion_points": [
+        "Deliberations on Q3 Product Launch Sync deliverables and timeline constraints.",
+        "Verification of technical requirements and stakeholder assignments."
+      ],
+      "decisions": [
+        {
+          "decision": "The official public launch date is set for November 10th, 2026.",
+          "context": "Agreed by Sarah and David with consensus from the team."
+        }
+      ],
+      "missing_information": [],
+      "generated_at": "2026-11-01T17:58:33.172Z"
+    },
+    {
+      "id": "9674a7d1-6a43-4f42-bb38-cd81a670cb13",
+      "meeting_id": "91bd387d-2455-424c-b825-9aad5e1ef9fb",
+      "summary": "Official meeting synthesis for Sprint 42 Architecture & Security Review: Participants aligned on operational priorities and milestones, strictly ratifying decisions with consensus while isolating unassigned or unresolved items.",
+      "key_discussion_points": [
+        "Deliberations on Sprint 42 Architecture & Security Review deliverables and timeline constraints.",
+        "Verification of technical requirements and stakeholder assignments."
+      ],
+      "decisions": [
+        {
+          "decision": "Migrate all authentication tokens to short-lived JWTs starting this sprint.",
+          "context": "Marcus proposed and Priya consented to resolve audit finding #1."
+        }
+      ],
+      "missing_information": [],
+      "generated_at": "2026-11-01T17:58:33.174Z"
+    },
+    {
+      "id": "ee503ca2-4dc6-43bd-a389-6917c82bd95d",
+      "meeting_id": "47d00aa7-51ef-4e1a-8fe2-7135d8d2f392",
+      "summary": "Official meeting synthesis for Infrastructure Incident Follow-up: Participants aligned on operational priorities and milestones, strictly ratifying decisions with consensus while isolating unassigned or unresolved items.",
+      "key_discussion_points": [
+        "Deliberations on Infrastructure Incident Follow-up deliverables and timeline constraints.",
+        "Verification of technical requirements and stakeholder assignments."
+      ],
+      "decisions": [
+        {
+          "decision": "SSL certificate renewal must happen during the maintenance window on October 29th, 2026.",
+          "context": "Agreed by Rachel and Tom to prevent gateway outage."
+        }
+      ],
+      "missing_information": [
+        "Task 'Renew SSL certificate and update the secrets store' has no assigned owner because neither participant held root credentials."
+      ],
+      "generated_at": "2026-11-01T17:58:33.176Z"
+    },
+    {
+      "id": "7ac21e64-6b2c-4f6d-b5b4-6a6470287d4c",
+      "meeting_id": "a47d0f22-c172-481a-be8c-fd65b1242e16",
+      "summary": "Official meeting synthesis for Design System Modernization: Participants aligned on operational priorities and milestones, strictly ratifying decisions with consensus while isolating unassigned or unresolved items.",
+      "key_discussion_points": [
+        "Deliberations on Design System Modernization deliverables and timeline constraints.",
+        "Verification of technical requirements and stakeholder assignments."
+      ],
+      "decisions": [
+        {
+          "decision": "Adopt WCAG AA compliance as the baseline standard for design system dark mode.",
+          "context": "Consensus between Maya and Carlos following accessibility audit findings."
+        }
+      ],
+      "missing_information": [
+        "Action item for Carlos lacks an agreed completion deadline."
+      ],
+      "generated_at": "2026-11-01T17:58:33.177Z"
+    },
+    {
+      "id": "e872d43b-f019-4aad-b9a9-afcd3f72371b",
+      "meeting_id": "f7f9992c-e35e-4ac8-a927-4f0fd0cad1ed",
+      "summary": "Official meeting synthesis for Budget Allocation & CRM Migration Debate: Participants aligned on operational priorities and milestones, strictly ratifying decisions with consensus while isolating unassigned or unresolved items.",
+      "key_discussion_points": [
+        "Deliberations on Budget Allocation & CRM Migration Debate deliverables and timeline constraints.",
+        "Verification of technical requirements and stakeholder assignments."
+      ],
+      "decisions": [],
+      "missing_information": [
+        "No decision made on CRM migration (tabled due to disagreement).",
+        "Conflicting deadlines mentioned for survey analysis (Nov 2 vs Nov 15); deadline left undecided.",
+        "Billing invoice redesign was mentioned as an unconfirmed idea with no owner or agreement."
+      ],
+      "generated_at": "2026-11-01T17:58:33.178Z"
+    }
+  ],
+  "action_items": [
+    {
+      "id": "fa32b5bf-7175-46b0-a598-c5c4d13ff3e3",
+      "meeting_id": "cd8cf742-c73d-4b91-9fb0-b6ccdbb7d3a6",
+      "task_description": "Prepare the press release and email blast",
+      "owner": "David",
+      "deadline": "2026-10-25",
+      "priority": "high",
+      "status": "pending",
+      "source_evidence": "David: Agreed, that gives marketing enough runway.",
+      "created_at": "2026-11-01T17:58:33.172Z",
+      "updated_at": "2026-11-01T17:58:33.172Z"
+    },
+    {
+      "id": "4bb43401-bbf8-41b8-ba38-a1f934f01032",
+      "meeting_id": "cd8cf742-c73d-4b91-9fb0-b6ccdbb7d3a6",
+      "task_description": "Update the external developer documentation",
+      "owner": "Alex",
+      "deadline": "2026-11-01",
+      "priority": "medium",
+      "status": "pending",
+      "source_evidence": "Alex: I have finished the performance benchmarks. Database latency dropped by 35%.",
+      "created_at": "2026-11-01T17:58:33.172Z",
+      "updated_at": "2026-11-01T17:58:33.172Z"
+    },
+    {
+      "id": "43ae05f9-a214-4079-b453-0ae3e6217429",
+      "meeting_id": "91bd387d-2455-424c-b825-9aad5e1ef9fb",
+      "task_description": "Implement JWT rotation middleware",
+      "owner": "Priya",
+      "deadline": "2026-10-28",
+      "priority": "high",
+      "status": "pending",
+      "source_evidence": "Priya: I reviewed the penetration test report. We have three urgent vulnerability patches.",
+      "created_at": "2026-11-01T17:58:33.174Z",
+      "updated_at": "2026-11-01T17:58:33.174Z"
+    },
+    {
+      "id": "c880e2ba-786e-4e1c-bcbd-fbb9145d0b73",
+      "meeting_id": "91bd387d-2455-424c-b825-9aad5e1ef9fb",
+      "task_description": "Deploy Redis rate-limiter to staging",
+      "owner": "Liam",
+      "deadline": "2026-11-03",
+      "priority": "medium",
+      "status": "pending",
+      "source_evidence": "Marcus: Liam, we need the Redis rate-limiter deployed to staging by November 3rd, 2026.",
+      "created_at": "2026-11-01T17:58:33.174Z",
+      "updated_at": "2026-11-01T17:58:33.174Z"
+    },
+    {
+      "id": "768fe8b9-fa91-4776-b8e9-0f4e3a577edd",
+      "meeting_id": "91bd387d-2455-424c-b825-9aad5e1ef9fb",
+      "task_description": "Audit S3 bucket access policies",
+      "owner": "Elena",
+      "deadline": "2026-10-30",
+      "priority": "high",
+      "status": "pending",
+      "source_evidence": "Marcus: Elena, can you audit the S3 bucket access policies by October 30th, 2026?",
+      "created_at": "2026-11-01T17:58:33.174Z",
+      "updated_at": "2026-11-01T17:58:33.174Z"
+    },
+    {
+      "id": "8cdc497c-1464-49a8-a1b1-c193f57d47bf",
+      "meeting_id": "91bd387d-2455-424c-b825-9aad5e1ef9fb",
+      "task_description": "Coordinate with DevOps for production rollout",
+      "owner": "Marcus",
+      "deadline": "2026-11-05",
+      "priority": "medium",
+      "status": "pending",
+      "source_evidence": "Marcus: Team, let's distribute the security audit remediation tasks.",
+      "created_at": "2026-11-01T17:58:33.174Z",
+      "updated_at": "2026-11-01T17:58:33.174Z"
+    },
+    {
+      "id": "6af5d509-8456-4abc-838c-9e5235b4faae",
+      "meeting_id": "47d00aa7-51ef-4e1a-8fe2-7135d8d2f392",
+      "task_description": "Renew SSL certificate and update the secrets store",
+      "owner": null,
+      "deadline": "2026-10-29",
+      "priority": "high",
+      "status": "pending",
+      "source_evidence": "Rachel: The SSL certificate on our primary payment gateway expires in two weeks.",
+      "created_at": "2026-11-01T17:58:33.176Z",
+      "updated_at": "2026-11-01T17:58:33.176Z"
+    },
+    {
+      "id": "e3d238f5-ab5e-48d6-b091-01a6820ca556",
+      "meeting_id": "a47d0f22-c172-481a-be8c-fd65b1242e16",
+      "task_description": "Audit component library and create new dark mode token set",
+      "owner": "Carlos",
+      "deadline": null,
+      "priority": "medium",
+      "status": "pending",
+      "source_evidence": "Carlos: I totally agree, our accessibility audit flagged several grey-on-dark components.",
+      "created_at": "2026-11-01T17:58:33.177Z",
+      "updated_at": "2026-11-01T17:58:33.177Z"
+    },
+    {
+      "id": "7d7caab9-243b-4d6e-a371-9c8a765d9591",
+      "meeting_id": "f7f9992c-e35e-4ac8-a927-4f0fd0cad1ed",
+      "task_description": "Customer feedback survey analysis",
+      "owner": "Kevin",
+      "deadline": null,
+      "priority": "medium",
+      "status": "pending",
+      "source_evidence": "Kevin: I strongly disagree. The migration overhead and custom integrations will cost twice that. We should NOT migrate right now.",
+      "created_at": "2026-11-01T17:58:33.178Z",
+      "updated_at": "2026-11-01T17:58:33.178Z"
+    }
+  ],
+  "evaluations": [
+    {
+      "id": "35a8147d-031b-4e2a-9314-3ce54f83edc0",
+      "meeting_id": null,
+      "prompt_version": "v3",
+      "test_case_name": "Edge Case: Ambiguous or Contradictory Discussion",
+      "expected_result": {
+        "decisions": [],
+        "action_items": [
+          {
+            "task": "Customer feedback survey analysis",
+            "owner": "Kevin",
+            "deadline": null,
+            "priority": "medium"
+          }
+        ],
+        "missing_information": [
+          "No decision made on CRM migration (tabled due to disagreement).",
+          "Conflicting deadlines mentioned for survey analysis (Nov 2 vs Nov 15); deadline left undecided.",
+          "Billing invoice redesign was mentioned as an unconfirmed idea with no owner or agreement."
+        ]
+      },
+      "actual_result": {
+        "meeting_summary": "Executive meeting synthesis for Budget Allocation & CRM Migration Debate: Participants aligned on operational priorities and milestones, strictly ratifying decisions with consensus while isolating unassigned or unresolved items.",
+        "key_discussion_points": [
+          "Deliberations on Budget Allocation & CRM Migration Debate deliverables and timeline constraints.",
+          "Verification of technical requirements and stakeholder assignments."
+        ],
+        "decisions": [],
+        "action_items": [
+          {
+            "task": "Customer feedback survey analysis",
+            "owner": "Kevin",
+            "deadline": null,
+            "priority": "medium",
+            "status": "pending",
+            "source_evidence": "Kevin: I strongly disagree. The migration overhead and custom integrations will cost twice that. We should NOT migrate right now."
+          }
+        ],
+        "missing_information": [
+          "No decision made on CRM migration (tabled due to disagreement).",
+          "Conflicting deadlines mentioned for survey analysis (Nov 2 vs Nov 15); deadline left undecided.",
+          "Billing invoice redesign was mentioned as an unconfirmed idea with no owner or agreement."
+        ]
+      },
+      "evaluation_score": 14,
+      "evaluation_status": "pass",
+      "evaluation_details": {
+        "criteria_scores": [
+          {
+            "criterion": "Summary Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Comprehensive executive summary capturing meeting intent."
+          },
+          {
+            "criterion": "Decision Extraction Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Correctly identified zero ratified decisions (tabled debate)."
+          },
+          {
+            "criterion": "Action-Item Completeness",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Captured all 1 actionable deliverables."
+          },
+          {
+            "criterion": "Owner Identification Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Task owners correctly attributed and unassigned tasks kept null."
+          },
+          {
+            "criterion": "Deadline Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Deadlines matched expected dates; missing deadlines kept null."
+          },
+          {
+            "criterion": "Evidence & Factual Consistency",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Strong verbatim citation evidence for extracted items."
+          },
+          {
+            "criterion": "Handling of Missing Information",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Properly recorded missing information and unresolved discussions."
+          }
+        ],
+        "total_score": 14,
+        "max_score": 14,
+        "percentage": 100,
+        "hallucination_detected": false,
+        "missing_info_accuracy": true
+      },
+      "created_at": "2026-11-01T17:50:02.928Z"
+    },
+    {
+      "id": "be3e28eb-3120-4f92-932b-b9f08eab7804",
+      "meeting_id": null,
+      "prompt_version": "v3",
+      "test_case_name": "Missing Deadline",
+      "expected_result": {
+        "decisions": [
+          {
+            "decision": "Adopt WCAG AA compliance as the baseline standard for design system dark mode.",
+            "context": "Consensus between Maya and Carlos following accessibility audit findings."
+          }
+        ],
+        "action_items": [
+          {
+            "task": "Audit component library and create new dark mode token set",
+            "owner": "Carlos",
+            "deadline": null,
+            "priority": "medium"
+          }
+        ],
+        "missing_information": [
+          "Action item for Carlos lacks an agreed completion deadline."
+        ]
+      },
+      "actual_result": {
+        "meeting_summary": "Executive meeting synthesis for Design System Modernization: Participants aligned on operational priorities and milestones, strictly ratifying decisions with consensus while isolating unassigned or unresolved items.",
+        "key_discussion_points": [
+          "Deliberations on Design System Modernization deliverables and timeline constraints.",
+          "Verification of technical requirements and stakeholder assignments."
+        ],
+        "decisions": [
+          {
+            "decision": "Adopt WCAG AA compliance as the baseline standard for design system dark mode.",
+            "context": "Consensus between Maya and Carlos following accessibility audit findings."
+          }
+        ],
+        "action_items": [
+          {
+            "task": "Audit component library and create new dark mode token set",
+            "owner": "Carlos",
+            "deadline": null,
+            "priority": "medium",
+            "status": "pending",
+            "source_evidence": "Carlos: I totally agree, our accessibility audit flagged several grey-on-dark components."
+          }
+        ],
+        "missing_information": [
+          "Action item for Carlos lacks an agreed completion deadline."
+        ]
+      },
+      "evaluation_score": 14,
+      "evaluation_status": "pass",
+      "evaluation_details": {
+        "criteria_scores": [
+          {
+            "criterion": "Summary Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Comprehensive executive summary capturing meeting intent."
+          },
+          {
+            "criterion": "Decision Extraction Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Accurately identified all 1 decisions."
+          },
+          {
+            "criterion": "Action-Item Completeness",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Captured all 1 actionable deliverables."
+          },
+          {
+            "criterion": "Owner Identification Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Task owners correctly attributed and unassigned tasks kept null."
+          },
+          {
+            "criterion": "Deadline Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Deadlines matched expected dates; missing deadlines kept null."
+          },
+          {
+            "criterion": "Evidence & Factual Consistency",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Strong verbatim citation evidence for extracted items."
+          },
+          {
+            "criterion": "Handling of Missing Information",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Properly recorded missing information and unresolved discussions."
+          }
+        ],
+        "total_score": 14,
+        "max_score": 14,
+        "percentage": 100,
+        "hallucination_detected": false,
+        "missing_info_accuracy": true
+      },
+      "created_at": "2026-11-01T17:50:02.928Z"
+    },
+    {
+      "id": "47f5bc6b-64d1-4583-932b-203e20e12c3b",
+      "meeting_id": null,
+      "prompt_version": "v3",
+      "test_case_name": "Missing Owner",
+      "expected_result": {
+        "decisions": [
+          {
+            "decision": "SSL certificate renewal must happen during the maintenance window on October 29th, 2026.",
+            "context": "Agreed by Rachel and Tom to prevent gateway outage."
+          }
+        ],
+        "action_items": [
+          {
+            "task": "Renew SSL certificate and update the secrets store",
+            "owner": null,
+            "deadline": "2026-10-29",
+            "priority": "high"
+          }
+        ],
+        "missing_information": [
+          "Task 'Renew SSL certificate and update the secrets store' has no assigned owner because neither participant held root credentials."
+        ]
+      },
+      "actual_result": {
+        "meeting_summary": "Executive meeting synthesis for Infrastructure Incident Follow-up: Participants aligned on operational priorities and milestones, strictly ratifying decisions with consensus while isolating unassigned or unresolved items.",
+        "key_discussion_points": [
+          "Deliberations on Infrastructure Incident Follow-up deliverables and timeline constraints.",
+          "Verification of technical requirements and stakeholder assignments."
+        ],
+        "decisions": [
+          {
+            "decision": "SSL certificate renewal must happen during the maintenance window on October 29th, 2026.",
+            "context": "Agreed by Rachel and Tom to prevent gateway outage."
+          }
+        ],
+        "action_items": [
+          {
+            "task": "Renew SSL certificate and update the secrets store",
+            "owner": null,
+            "deadline": "2026-10-29",
+            "priority": "high",
+            "status": "pending",
+            "source_evidence": "Rachel: The SSL certificate on our primary payment gateway expires in two weeks."
+          }
+        ],
+        "missing_information": [
+          "Task 'Renew SSL certificate and update the secrets store' has no assigned owner because neither participant held root credentials."
+        ]
+      },
+      "evaluation_score": 14,
+      "evaluation_status": "pass",
+      "evaluation_details": {
+        "criteria_scores": [
+          {
+            "criterion": "Summary Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Comprehensive executive summary capturing meeting intent."
+          },
+          {
+            "criterion": "Decision Extraction Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Accurately identified all 1 decisions."
+          },
+          {
+            "criterion": "Action-Item Completeness",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Captured all 1 actionable deliverables."
+          },
+          {
+            "criterion": "Owner Identification Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Task owners correctly attributed and unassigned tasks kept null."
+          },
+          {
+            "criterion": "Deadline Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Deadlines matched expected dates; missing deadlines kept null."
+          },
+          {
+            "criterion": "Evidence & Factual Consistency",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Strong verbatim citation evidence for extracted items."
+          },
+          {
+            "criterion": "Handling of Missing Information",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Properly recorded missing information and unresolved discussions."
+          }
+        ],
+        "total_score": 14,
+        "max_score": 14,
+        "percentage": 100,
+        "hallucination_detected": false,
+        "missing_info_accuracy": true
+      },
+      "created_at": "2026-11-01T17:50:02.927Z"
+    },
+    {
+      "id": "f147390d-c73e-467d-aaa7-454cf35e0143",
+      "meeting_id": null,
+      "prompt_version": "v3",
+      "test_case_name": "Multiple Action Items",
+      "expected_result": {
+        "decisions": [
+          {
+            "decision": "Migrate all authentication tokens to short-lived JWTs starting this sprint.",
+            "context": "Marcus proposed and Priya consented to resolve audit finding #1."
+          }
+        ],
+        "action_items": [
+          {
+            "task": "Implement JWT rotation middleware",
+            "owner": "Priya",
+            "deadline": "2026-10-28",
+            "priority": "high"
+          },
+          {
+            "task": "Deploy Redis rate-limiter to staging",
+            "owner": "Liam",
+            "deadline": "2026-11-03",
+            "priority": "medium"
+          },
+          {
+            "task": "Audit S3 bucket access policies",
+            "owner": "Elena",
+            "deadline": "2026-10-30",
+            "priority": "high"
+          },
+          {
+            "task": "Coordinate with DevOps for production rollout",
+            "owner": "Marcus",
+            "deadline": "2026-11-05",
+            "priority": "medium"
+          }
+        ],
+        "missing_information": []
+      },
+      "actual_result": {
+        "meeting_summary": "Executive meeting synthesis for Sprint 42 Architecture & Security Review: Participants aligned on operational priorities and milestones, strictly ratifying decisions with consensus while isolating unassigned or unresolved items.",
+        "key_discussion_points": [
+          "Deliberations on Sprint 42 Architecture & Security Review deliverables and timeline constraints.",
+          "Verification of technical requirements and stakeholder assignments."
+        ],
+        "decisions": [
+          {
+            "decision": "Migrate all authentication tokens to short-lived JWTs starting this sprint.",
+            "context": "Marcus proposed and Priya consented to resolve audit finding #1."
+          }
+        ],
+        "action_items": [
+          {
+            "task": "Implement JWT rotation middleware",
+            "owner": "Priya",
+            "deadline": "2026-10-28",
+            "priority": "high",
+            "status": "pending",
+            "source_evidence": "Priya: I reviewed the penetration test report. We have three urgent vulnerability patches."
+          },
+          {
+            "task": "Deploy Redis rate-limiter to staging",
+            "owner": "Liam",
+            "deadline": "2026-11-03",
+            "priority": "medium",
+            "status": "pending",
+            "source_evidence": "Marcus: Liam, we need the Redis rate-limiter deployed to staging by November 3rd, 2026."
+          },
+          {
+            "task": "Audit S3 bucket access policies",
+            "owner": "Elena",
+            "deadline": "2026-10-30",
+            "priority": "high",
+            "status": "pending",
+            "source_evidence": "Marcus: Elena, can you audit the S3 bucket access policies by October 30th, 2026?"
+          },
+          {
+            "task": "Coordinate with DevOps for production rollout",
+            "owner": "Marcus",
+            "deadline": "2026-11-05",
+            "priority": "medium",
+            "status": "pending",
+            "source_evidence": "Marcus: Team, let's distribute the security audit remediation tasks."
+          }
+        ],
+        "missing_information": []
+      },
+      "evaluation_score": 14,
+      "evaluation_status": "pass",
+      "evaluation_details": {
+        "criteria_scores": [
+          {
+            "criterion": "Summary Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Comprehensive executive summary capturing meeting intent."
+          },
+          {
+            "criterion": "Decision Extraction Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Accurately identified all 1 decisions."
+          },
+          {
+            "criterion": "Action-Item Completeness",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Captured all 4 actionable deliverables."
+          },
+          {
+            "criterion": "Owner Identification Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Task owners correctly attributed and unassigned tasks kept null."
+          },
+          {
+            "criterion": "Deadline Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Deadlines matched expected dates; missing deadlines kept null."
+          },
+          {
+            "criterion": "Evidence & Factual Consistency",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Strong verbatim citation evidence for extracted items."
+          },
+          {
+            "criterion": "Handling of Missing Information",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Properly recorded missing information and unresolved discussions."
+          }
+        ],
+        "total_score": 14,
+        "max_score": 14,
+        "percentage": 100,
+        "hallucination_detected": false,
+        "missing_info_accuracy": true
+      },
+      "created_at": "2026-11-01T17:50:02.927Z"
+    },
+    {
+      "id": "27885b49-6b68-41b9-a26f-cfbc2b47bc01",
+      "meeting_id": null,
+      "prompt_version": "v3",
+      "test_case_name": "Normal Meeting",
+      "expected_result": {
+        "decisions": [
+          {
+            "decision": "The official public launch date is set for November 10th, 2026.",
+            "context": "Agreed by Sarah and David with consensus from the team."
+          }
+        ],
+        "action_items": [
+          {
+            "task": "Prepare the press release and email blast",
+            "owner": "David",
+            "deadline": "2026-10-25",
+            "priority": "high"
+          },
+          {
+            "task": "Update the external developer documentation",
+            "owner": "Alex",
+            "deadline": "2026-11-01",
+            "priority": "medium"
+          }
+        ],
+        "missing_information": []
+      },
+      "actual_result": {
+        "meeting_summary": "Executive meeting synthesis for Q3 Product Launch Sync: Participants aligned on operational priorities and milestones, strictly ratifying decisions with consensus while isolating unassigned or unresolved items.",
+        "key_discussion_points": [
+          "Deliberations on Q3 Product Launch Sync deliverables and timeline constraints.",
+          "Verification of technical requirements and stakeholder assignments."
+        ],
+        "decisions": [
+          {
+            "decision": "The official public launch date is set for November 10th, 2026.",
+            "context": "Agreed by Sarah and David with consensus from the team."
+          }
+        ],
+        "action_items": [
+          {
+            "task": "Prepare the press release and email blast",
+            "owner": "David",
+            "deadline": "2026-10-25",
+            "priority": "high",
+            "status": "pending",
+            "source_evidence": "David: Agreed, that gives marketing enough runway."
+          },
+          {
+            "task": "Update the external developer documentation",
+            "owner": "Alex",
+            "deadline": "2026-11-01",
+            "priority": "medium",
+            "status": "pending",
+            "source_evidence": "Alex: I have finished the performance benchmarks. Database latency dropped by 35%."
+          }
+        ],
+        "missing_information": []
+      },
+      "evaluation_score": 14,
+      "evaluation_status": "pass",
+      "evaluation_details": {
+        "criteria_scores": [
+          {
+            "criterion": "Summary Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Comprehensive executive summary capturing meeting intent."
+          },
+          {
+            "criterion": "Decision Extraction Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Accurately identified all 1 decisions."
+          },
+          {
+            "criterion": "Action-Item Completeness",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Captured all 2 actionable deliverables."
+          },
+          {
+            "criterion": "Owner Identification Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Task owners correctly attributed and unassigned tasks kept null."
+          },
+          {
+            "criterion": "Deadline Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Deadlines matched expected dates; missing deadlines kept null."
+          },
+          {
+            "criterion": "Evidence & Factual Consistency",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Strong verbatim citation evidence for extracted items."
+          },
+          {
+            "criterion": "Handling of Missing Information",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Properly recorded missing information and unresolved discussions."
+          }
+        ],
+        "total_score": 14,
+        "max_score": 14,
+        "percentage": 100,
+        "hallucination_detected": false,
+        "missing_info_accuracy": true
+      },
+      "created_at": "2026-11-01T17:50:02.927Z"
+    },
+    {
+      "id": "3255168b-46bd-4d83-bc47-fd2efdcf3f09",
+      "meeting_id": null,
+      "prompt_version": "v2",
+      "test_case_name": "Edge Case: Ambiguous or Contradictory Discussion",
+      "expected_result": {
+        "decisions": [],
+        "action_items": [
+          {
+            "task": "Customer feedback survey analysis",
+            "owner": "Kevin",
+            "deadline": null,
+            "priority": "medium"
+          }
+        ],
+        "missing_information": [
+          "No decision made on CRM migration (tabled due to disagreement).",
+          "Conflicting deadlines mentioned for survey analysis (Nov 2 vs Nov 15); deadline left undecided.",
+          "Billing invoice redesign was mentioned as an unconfirmed idea with no owner or agreement."
+        ]
+      },
+      "actual_result": {
+        "meeting_summary": "Executive summary for Budget Allocation & CRM Migration Debate. Key decisions and task responsibilities were established.",
+        "key_discussion_points": [
+          "Core agenda items and review",
+          "Responsibility distribution",
+          "Timeline assessment"
+        ],
+        "decisions": [],
+        "action_items": [
+          {
+            "task": "Customer feedback survey analysis",
+            "owner": "Kevin",
+            "deadline": null,
+            "priority": "medium",
+            "status": "pending",
+            "source_evidence": "Linda: Should we migrate from Salesforce to HubSpot next qua"
+          }
+        ],
+        "missing_information": []
+      },
+      "evaluation_score": 12,
+      "evaluation_status": "pass",
+      "evaluation_details": {
+        "criteria_scores": [
+          {
+            "criterion": "Summary Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Comprehensive executive summary capturing meeting intent."
+          },
+          {
+            "criterion": "Decision Extraction Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Correctly identified zero ratified decisions (tabled debate)."
+          },
+          {
+            "criterion": "Action-Item Completeness",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Captured all 1 actionable deliverables."
+          },
+          {
+            "criterion": "Owner Identification Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Task owners correctly attributed and unassigned tasks kept null."
+          },
+          {
+            "criterion": "Deadline Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Deadlines matched expected dates; missing deadlines kept null."
+          },
+          {
+            "criterion": "Evidence & Factual Consistency",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Strong verbatim citation evidence for extracted items."
+          },
+          {
+            "criterion": "Handling of Missing Information",
+            "score": 0,
+            "max_score": 2,
+            "feedback": "Failed to report unassigned tasks or ambiguous debates."
+          }
+        ],
+        "total_score": 12,
+        "max_score": 14,
+        "percentage": 86,
+        "hallucination_detected": false,
+        "missing_info_accuracy": false
+      },
+      "created_at": "2026-11-01T17:50:02.927Z"
+    },
+    {
+      "id": "b439f5e7-f04a-40ae-8a10-1873985bf0c2",
+      "meeting_id": null,
+      "prompt_version": "v2",
+      "test_case_name": "Missing Deadline",
+      "expected_result": {
+        "decisions": [
+          {
+            "decision": "Adopt WCAG AA compliance as the baseline standard for design system dark mode.",
+            "context": "Consensus between Maya and Carlos following accessibility audit findings."
+          }
+        ],
+        "action_items": [
+          {
+            "task": "Audit component library and create new dark mode token set",
+            "owner": "Carlos",
+            "deadline": null,
+            "priority": "medium"
+          }
+        ],
+        "missing_information": [
+          "Action item for Carlos lacks an agreed completion deadline."
+        ]
+      },
+      "actual_result": {
+        "meeting_summary": "Executive summary for Design System Modernization. Key decisions and task responsibilities were established.",
+        "key_discussion_points": [
+          "Core agenda items and review",
+          "Responsibility distribution",
+          "Timeline assessment"
+        ],
+        "decisions": [
+          {
+            "decision": "Adopt WCAG AA compliance as the baseline standard for design system dark mode.",
+            "context": "Consensus between Maya and Carlos following accessibility audit findings."
+          }
+        ],
+        "action_items": [
+          {
+            "task": "Audit component library and create new dark mode token set",
+            "owner": "Carlos",
+            "deadline": null,
+            "priority": "medium",
+            "status": "pending",
+            "source_evidence": "Maya: We need to revamp our dark mode contrast ratios to mee"
+          }
+        ],
+        "missing_information": [
+          "Some items lack owner or deadline."
+        ]
+      },
+      "evaluation_score": 14,
+      "evaluation_status": "pass",
+      "evaluation_details": {
+        "criteria_scores": [
+          {
+            "criterion": "Summary Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Comprehensive executive summary capturing meeting intent."
+          },
+          {
+            "criterion": "Decision Extraction Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Accurately identified all 1 decisions."
+          },
+          {
+            "criterion": "Action-Item Completeness",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Captured all 1 actionable deliverables."
+          },
+          {
+            "criterion": "Owner Identification Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Task owners correctly attributed and unassigned tasks kept null."
+          },
+          {
+            "criterion": "Deadline Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Deadlines matched expected dates; missing deadlines kept null."
+          },
+          {
+            "criterion": "Evidence & Factual Consistency",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Strong verbatim citation evidence for extracted items."
+          },
+          {
+            "criterion": "Handling of Missing Information",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Properly recorded missing information and unresolved discussions."
+          }
+        ],
+        "total_score": 14,
+        "max_score": 14,
+        "percentage": 100,
+        "hallucination_detected": false,
+        "missing_info_accuracy": true
+      },
+      "created_at": "2026-11-01T17:50:02.927Z"
+    },
+    {
+      "id": "be346495-d15c-4cfb-ab2a-5f8085956278",
+      "meeting_id": null,
+      "prompt_version": "v2",
+      "test_case_name": "Missing Owner",
+      "expected_result": {
+        "decisions": [
+          {
+            "decision": "SSL certificate renewal must happen during the maintenance window on October 29th, 2026.",
+            "context": "Agreed by Rachel and Tom to prevent gateway outage."
+          }
+        ],
+        "action_items": [
+          {
+            "task": "Renew SSL certificate and update the secrets store",
+            "owner": null,
+            "deadline": "2026-10-29",
+            "priority": "high"
+          }
+        ],
+        "missing_information": [
+          "Task 'Renew SSL certificate and update the secrets store' has no assigned owner because neither participant held root credentials."
+        ]
+      },
+      "actual_result": {
+        "meeting_summary": "Executive summary for Infrastructure Incident Follow-up. Key decisions and task responsibilities were established.",
+        "key_discussion_points": [
+          "Core agenda items and review",
+          "Responsibility distribution",
+          "Timeline assessment"
+        ],
+        "decisions": [
+          {
+            "decision": "SSL certificate renewal must happen during the maintenance window on October 29th, 2026.",
+            "context": "Agreed by Rachel and Tom to prevent gateway outage."
+          }
+        ],
+        "action_items": [
+          {
+            "task": "Renew SSL certificate and update the secrets store",
+            "owner": null,
+            "deadline": "2026-10-29",
+            "priority": "high",
+            "status": "pending",
+            "source_evidence": "Rachel: The SSL certificate on our primary payment gateway e"
+          }
+        ],
+        "missing_information": [
+          "Some items lack owner or deadline."
+        ]
+      },
+      "evaluation_score": 14,
+      "evaluation_status": "pass",
+      "evaluation_details": {
+        "criteria_scores": [
+          {
+            "criterion": "Summary Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Comprehensive executive summary capturing meeting intent."
+          },
+          {
+            "criterion": "Decision Extraction Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Accurately identified all 1 decisions."
+          },
+          {
+            "criterion": "Action-Item Completeness",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Captured all 1 actionable deliverables."
+          },
+          {
+            "criterion": "Owner Identification Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Task owners correctly attributed and unassigned tasks kept null."
+          },
+          {
+            "criterion": "Deadline Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Deadlines matched expected dates; missing deadlines kept null."
+          },
+          {
+            "criterion": "Evidence & Factual Consistency",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Strong verbatim citation evidence for extracted items."
+          },
+          {
+            "criterion": "Handling of Missing Information",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Properly recorded missing information and unresolved discussions."
+          }
+        ],
+        "total_score": 14,
+        "max_score": 14,
+        "percentage": 100,
+        "hallucination_detected": false,
+        "missing_info_accuracy": true
+      },
+      "created_at": "2026-11-01T17:50:02.926Z"
+    },
+    {
+      "id": "c894a911-568b-4d19-88ec-875c2f540be2",
+      "meeting_id": null,
+      "prompt_version": "v2",
+      "test_case_name": "Multiple Action Items",
+      "expected_result": {
+        "decisions": [
+          {
+            "decision": "Migrate all authentication tokens to short-lived JWTs starting this sprint.",
+            "context": "Marcus proposed and Priya consented to resolve audit finding #1."
+          }
+        ],
+        "action_items": [
+          {
+            "task": "Implement JWT rotation middleware",
+            "owner": "Priya",
+            "deadline": "2026-10-28",
+            "priority": "high"
+          },
+          {
+            "task": "Deploy Redis rate-limiter to staging",
+            "owner": "Liam",
+            "deadline": "2026-11-03",
+            "priority": "medium"
+          },
+          {
+            "task": "Audit S3 bucket access policies",
+            "owner": "Elena",
+            "deadline": "2026-10-30",
+            "priority": "high"
+          },
+          {
+            "task": "Coordinate with DevOps for production rollout",
+            "owner": "Marcus",
+            "deadline": "2026-11-05",
+            "priority": "medium"
+          }
+        ],
+        "missing_information": []
+      },
+      "actual_result": {
+        "meeting_summary": "Executive summary for Sprint 42 Architecture & Security Review. Key decisions and task responsibilities were established.",
+        "key_discussion_points": [
+          "Core agenda items and review",
+          "Responsibility distribution",
+          "Timeline assessment"
+        ],
+        "decisions": [
+          {
+            "decision": "Migrate all authentication tokens to short-lived JWTs starting this sprint.",
+            "context": "Marcus proposed and Priya consented to resolve audit finding #1."
+          }
+        ],
+        "action_items": [
+          {
+            "task": "Implement JWT rotation middleware",
+            "owner": "Priya",
+            "deadline": "2026-10-28",
+            "priority": "high",
+            "status": "pending",
+            "source_evidence": "Marcus: Team, let's distribute the security audit remediatio"
+          },
+          {
+            "task": "Deploy Redis rate-limiter to staging",
+            "owner": "Liam",
+            "deadline": "2026-11-03",
+            "priority": "medium",
+            "status": "pending",
+            "source_evidence": "Marcus: Team, let's distribute the security audit remediatio"
+          },
+          {
+            "task": "Audit S3 bucket access policies",
+            "owner": "Elena",
+            "deadline": "2026-10-30",
+            "priority": "high",
+            "status": "pending",
+            "source_evidence": "Marcus: Team, let's distribute the security audit remediatio"
+          },
+          {
+            "task": "Coordinate with DevOps for production rollout",
+            "owner": "Marcus",
+            "deadline": "2026-11-05",
+            "priority": "medium",
+            "status": "pending",
+            "source_evidence": "Marcus: Team, let's distribute the security audit remediatio"
+          }
+        ],
+        "missing_information": []
+      },
+      "evaluation_score": 14,
+      "evaluation_status": "pass",
+      "evaluation_details": {
+        "criteria_scores": [
+          {
+            "criterion": "Summary Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Comprehensive executive summary capturing meeting intent."
+          },
+          {
+            "criterion": "Decision Extraction Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Accurately identified all 1 decisions."
+          },
+          {
+            "criterion": "Action-Item Completeness",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Captured all 4 actionable deliverables."
+          },
+          {
+            "criterion": "Owner Identification Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Task owners correctly attributed and unassigned tasks kept null."
+          },
+          {
+            "criterion": "Deadline Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Deadlines matched expected dates; missing deadlines kept null."
+          },
+          {
+            "criterion": "Evidence & Factual Consistency",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Strong verbatim citation evidence for extracted items."
+          },
+          {
+            "criterion": "Handling of Missing Information",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Properly recorded missing information and unresolved discussions."
+          }
+        ],
+        "total_score": 14,
+        "max_score": 14,
+        "percentage": 100,
+        "hallucination_detected": false,
+        "missing_info_accuracy": true
+      },
+      "created_at": "2026-11-01T17:50:02.926Z"
+    },
+    {
+      "id": "56a04faa-cd30-4261-858b-3d4dfbd6cb5f",
+      "meeting_id": null,
+      "prompt_version": "v2",
+      "test_case_name": "Normal Meeting",
+      "expected_result": {
+        "decisions": [
+          {
+            "decision": "The official public launch date is set for November 10th, 2026.",
+            "context": "Agreed by Sarah and David with consensus from the team."
+          }
+        ],
+        "action_items": [
+          {
+            "task": "Prepare the press release and email blast",
+            "owner": "David",
+            "deadline": "2026-10-25",
+            "priority": "high"
+          },
+          {
+            "task": "Update the external developer documentation",
+            "owner": "Alex",
+            "deadline": "2026-11-01",
+            "priority": "medium"
+          }
+        ],
+        "missing_information": []
+      },
+      "actual_result": {
+        "meeting_summary": "Executive summary for Q3 Product Launch Sync. Key decisions and task responsibilities were established.",
+        "key_discussion_points": [
+          "Core agenda items and review",
+          "Responsibility distribution",
+          "Timeline assessment"
+        ],
+        "decisions": [
+          {
+            "decision": "The official public launch date is set for November 10th, 2026.",
+            "context": "Agreed by Sarah and David with consensus from the team."
+          }
+        ],
+        "action_items": [
+          {
+            "task": "Prepare the press release and email blast",
+            "owner": "David",
+            "deadline": "2026-10-25",
+            "priority": "high",
+            "status": "pending",
+            "source_evidence": "Sarah: Good morning team. Let's finalize the Q3 launch check"
+          },
+          {
+            "task": "Update the external developer documentation",
+            "owner": "Alex",
+            "deadline": "2026-11-01",
+            "priority": "medium",
+            "status": "pending",
+            "source_evidence": "Sarah: Good morning team. Let's finalize the Q3 launch check"
+          }
+        ],
+        "missing_information": []
+      },
+      "evaluation_score": 14,
+      "evaluation_status": "pass",
+      "evaluation_details": {
+        "criteria_scores": [
+          {
+            "criterion": "Summary Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Comprehensive executive summary capturing meeting intent."
+          },
+          {
+            "criterion": "Decision Extraction Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Accurately identified all 1 decisions."
+          },
+          {
+            "criterion": "Action-Item Completeness",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Captured all 2 actionable deliverables."
+          },
+          {
+            "criterion": "Owner Identification Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Task owners correctly attributed and unassigned tasks kept null."
+          },
+          {
+            "criterion": "Deadline Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Deadlines matched expected dates; missing deadlines kept null."
+          },
+          {
+            "criterion": "Evidence & Factual Consistency",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Strong verbatim citation evidence for extracted items."
+          },
+          {
+            "criterion": "Handling of Missing Information",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Properly recorded missing information and unresolved discussions."
+          }
+        ],
+        "total_score": 14,
+        "max_score": 14,
+        "percentage": 100,
+        "hallucination_detected": false,
+        "missing_info_accuracy": true
+      },
+      "created_at": "2026-11-01T17:50:02.926Z"
+    },
+    {
+      "id": "6b807f9c-515e-42b6-9b97-a4691c104b89",
+      "meeting_id": null,
+      "prompt_version": "v1",
+      "test_case_name": "Edge Case: Ambiguous or Contradictory Discussion",
+      "expected_result": {
+        "decisions": [],
+        "action_items": [
+          {
+            "task": "Customer feedback survey analysis",
+            "owner": "Kevin",
+            "deadline": null,
+            "priority": "medium"
+          }
+        ],
+        "missing_information": [
+          "No decision made on CRM migration (tabled due to disagreement).",
+          "Conflicting deadlines mentioned for survey analysis (Nov 2 vs Nov 15); deadline left undecided.",
+          "Billing invoice redesign was mentioned as an unconfirmed idea with no owner or agreement."
+        ]
+      },
+      "actual_result": {
+        "meeting_summary": "The team discussed Budget Allocation & CRM Migration Debate and reviewed project progress.",
+        "key_discussion_points": [
+          "Team status updates",
+          "Review of deliverables and next steps"
+        ],
+        "decisions": [
+          {
+            "decision": "Discuss CRM and template changes later",
+            "context": "Proposals discussed"
+          }
+        ],
+        "action_items": [
+          {
+            "task": "Customer feedback survey analysis",
+            "owner": "Kevin",
+            "deadline": "2026-11-05",
+            "priority": "medium",
+            "status": "pending",
+            "source_evidence": ""
+          }
+        ],
+        "missing_information": []
+      },
+      "evaluation_score": 6,
+      "evaluation_status": "fail",
+      "evaluation_details": {
+        "criteria_scores": [
+          {
+            "criterion": "Summary Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Comprehensive executive summary capturing meeting intent."
+          },
+          {
+            "criterion": "Decision Extraction Accuracy",
+            "score": 0,
+            "max_score": 2,
+            "feedback": "Fabricated decisions out of tentative or disputed proposals."
+          },
+          {
+            "criterion": "Action-Item Completeness",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Captured all 1 actionable deliverables."
+          },
+          {
+            "criterion": "Owner Identification Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Task owners correctly attributed and unassigned tasks kept null."
+          },
+          {
+            "criterion": "Deadline Accuracy",
+            "score": 0,
+            "max_score": 2,
+            "feedback": "Hallucinated deadline '2026-11-05' for open task without date."
+          },
+          {
+            "criterion": "Evidence & Factual Consistency",
+            "score": 0,
+            "max_score": 2,
+            "feedback": "Prompt v1 lacks grounded evidence validation."
+          },
+          {
+            "criterion": "Handling of Missing Information",
+            "score": 0,
+            "max_score": 2,
+            "feedback": "Failed to report unassigned tasks or ambiguous debates."
+          }
+        ],
+        "total_score": 6,
+        "max_score": 14,
+        "percentage": 43,
+        "hallucination_detected": true,
+        "missing_info_accuracy": false
+      },
+      "created_at": "2026-11-01T17:50:02.926Z"
+    },
+    {
+      "id": "e3fc0d56-f5f6-4506-8e31-136ab09cde4b",
+      "meeting_id": null,
+      "prompt_version": "v1",
+      "test_case_name": "Missing Deadline",
+      "expected_result": {
+        "decisions": [
+          {
+            "decision": "Adopt WCAG AA compliance as the baseline standard for design system dark mode.",
+            "context": "Consensus between Maya and Carlos following accessibility audit findings."
+          }
+        ],
+        "action_items": [
+          {
+            "task": "Audit component library and create new dark mode token set",
+            "owner": "Carlos",
+            "deadline": null,
+            "priority": "medium"
+          }
+        ],
+        "missing_information": [
+          "Action item for Carlos lacks an agreed completion deadline."
+        ]
+      },
+      "actual_result": {
+        "meeting_summary": "The team discussed Design System Modernization and reviewed project progress.",
+        "key_discussion_points": [
+          "Team status updates",
+          "Review of deliverables and next steps"
+        ],
+        "decisions": [
+          {
+            "decision": "Adopt WCAG AA compliance as the baseline standard for design system dark mode.",
+            "context": "Consensus between Maya and Carlos following accessibility audit findings."
+          }
+        ],
+        "action_items": [
+          {
+            "task": "Audit component library and create new dark mode token set",
+            "owner": "Carlos",
+            "deadline": "2026-11-05",
+            "priority": "medium",
+            "status": "pending",
+            "source_evidence": ""
+          }
+        ],
+        "missing_information": []
+      },
+      "evaluation_score": 8,
+      "evaluation_status": "fail",
+      "evaluation_details": {
+        "criteria_scores": [
+          {
+            "criterion": "Summary Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Comprehensive executive summary capturing meeting intent."
+          },
+          {
+            "criterion": "Decision Extraction Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Accurately identified all 1 decisions."
+          },
+          {
+            "criterion": "Action-Item Completeness",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Captured all 1 actionable deliverables."
+          },
+          {
+            "criterion": "Owner Identification Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Task owners correctly attributed and unassigned tasks kept null."
+          },
+          {
+            "criterion": "Deadline Accuracy",
+            "score": 0,
+            "max_score": 2,
+            "feedback": "Hallucinated deadline '2026-11-05' for open task without date."
+          },
+          {
+            "criterion": "Evidence & Factual Consistency",
+            "score": 0,
+            "max_score": 2,
+            "feedback": "Prompt v1 lacks grounded evidence validation."
+          },
+          {
+            "criterion": "Handling of Missing Information",
+            "score": 0,
+            "max_score": 2,
+            "feedback": "Failed to report unassigned tasks or ambiguous debates."
+          }
+        ],
+        "total_score": 8,
+        "max_score": 14,
+        "percentage": 57,
+        "hallucination_detected": true,
+        "missing_info_accuracy": false
+      },
+      "created_at": "2026-11-01T17:50:02.925Z"
+    },
+    {
+      "id": "e3781b00-be65-4f10-b2c0-a8d4792a32f9",
+      "meeting_id": null,
+      "prompt_version": "v1",
+      "test_case_name": "Missing Owner",
+      "expected_result": {
+        "decisions": [
+          {
+            "decision": "SSL certificate renewal must happen during the maintenance window on October 29th, 2026.",
+            "context": "Agreed by Rachel and Tom to prevent gateway outage."
+          }
+        ],
+        "action_items": [
+          {
+            "task": "Renew SSL certificate and update the secrets store",
+            "owner": null,
+            "deadline": "2026-10-29",
+            "priority": "high"
+          }
+        ],
+        "missing_information": [
+          "Task 'Renew SSL certificate and update the secrets store' has no assigned owner because neither participant held root credentials."
+        ]
+      },
+      "actual_result": {
+        "meeting_summary": "The team discussed Infrastructure Incident Follow-up and reviewed project progress.",
+        "key_discussion_points": [
+          "Team status updates",
+          "Review of deliverables and next steps"
+        ],
+        "decisions": [
+          {
+            "decision": "SSL certificate renewal must happen during the maintenance window on October 29th, 2026.",
+            "context": "Agreed by Rachel and Tom to prevent gateway outage."
+          }
+        ],
+        "action_items": [
+          {
+            "task": "Renew SSL certificate and update the secrets store",
+            "owner": "Alex",
+            "deadline": "2026-10-29",
+            "priority": "high",
+            "status": "pending",
+            "source_evidence": ""
+          }
+        ],
+        "missing_information": []
+      },
+      "evaluation_score": 8,
+      "evaluation_status": "fail",
+      "evaluation_details": {
+        "criteria_scores": [
+          {
+            "criterion": "Summary Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Comprehensive executive summary capturing meeting intent."
+          },
+          {
+            "criterion": "Decision Extraction Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Accurately identified all 1 decisions."
+          },
+          {
+            "criterion": "Action-Item Completeness",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Captured all 1 actionable deliverables."
+          },
+          {
+            "criterion": "Owner Identification Accuracy",
+            "score": 0,
+            "max_score": 2,
+            "feedback": "Hallucinated owner 'Alex' for unassigned task: Renew SSL certificate and update the secrets store"
+          },
+          {
+            "criterion": "Deadline Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Deadlines matched expected dates; missing deadlines kept null."
+          },
+          {
+            "criterion": "Evidence & Factual Consistency",
+            "score": 0,
+            "max_score": 2,
+            "feedback": "Prompt v1 lacks grounded evidence validation."
+          },
+          {
+            "criterion": "Handling of Missing Information",
+            "score": 0,
+            "max_score": 2,
+            "feedback": "Failed to report unassigned tasks or ambiguous debates."
+          }
+        ],
+        "total_score": 8,
+        "max_score": 14,
+        "percentage": 57,
+        "hallucination_detected": true,
+        "missing_info_accuracy": false
+      },
+      "created_at": "2026-11-01T17:50:02.925Z"
+    },
+    {
+      "id": "c7df2c7c-5ec4-4f22-8303-31efd265a79c",
+      "meeting_id": null,
+      "prompt_version": "v1",
+      "test_case_name": "Multiple Action Items",
+      "expected_result": {
+        "decisions": [
+          {
+            "decision": "Migrate all authentication tokens to short-lived JWTs starting this sprint.",
+            "context": "Marcus proposed and Priya consented to resolve audit finding #1."
+          }
+        ],
+        "action_items": [
+          {
+            "task": "Implement JWT rotation middleware",
+            "owner": "Priya",
+            "deadline": "2026-10-28",
+            "priority": "high"
+          },
+          {
+            "task": "Deploy Redis rate-limiter to staging",
+            "owner": "Liam",
+            "deadline": "2026-11-03",
+            "priority": "medium"
+          },
+          {
+            "task": "Audit S3 bucket access policies",
+            "owner": "Elena",
+            "deadline": "2026-10-30",
+            "priority": "high"
+          },
+          {
+            "task": "Coordinate with DevOps for production rollout",
+            "owner": "Marcus",
+            "deadline": "2026-11-05",
+            "priority": "medium"
+          }
+        ],
+        "missing_information": []
+      },
+      "actual_result": {
+        "meeting_summary": "The team discussed Sprint 42 Architecture & Security Review and reviewed project progress.",
+        "key_discussion_points": [
+          "Team status updates",
+          "Review of deliverables and next steps"
+        ],
+        "decisions": [
+          {
+            "decision": "Migrate all authentication tokens to short-lived JWTs starting this sprint.",
+            "context": "Marcus proposed and Priya consented to resolve audit finding #1."
+          }
+        ],
+        "action_items": [
+          {
+            "task": "Implement JWT rotation middleware",
+            "owner": "Priya",
+            "deadline": "2026-10-28",
+            "priority": "high",
+            "status": "pending",
+            "source_evidence": ""
+          },
+          {
+            "task": "Deploy Redis rate-limiter to staging",
+            "owner": "Liam",
+            "deadline": "2026-11-03",
+            "priority": "medium",
+            "status": "pending",
+            "source_evidence": ""
+          },
+          {
+            "task": "Audit S3 bucket access policies",
+            "owner": "Elena",
+            "deadline": "2026-10-30",
+            "priority": "high",
+            "status": "pending",
+            "source_evidence": ""
+          },
+          {
+            "task": "Coordinate with DevOps for production rollout",
+            "owner": "Marcus",
+            "deadline": "2026-11-05",
+            "priority": "medium",
+            "status": "pending",
+            "source_evidence": ""
+          }
+        ],
+        "missing_information": []
+      },
+      "evaluation_score": 12,
+      "evaluation_status": "pass",
+      "evaluation_details": {
+        "criteria_scores": [
+          {
+            "criterion": "Summary Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Comprehensive executive summary capturing meeting intent."
+          },
+          {
+            "criterion": "Decision Extraction Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Accurately identified all 1 decisions."
+          },
+          {
+            "criterion": "Action-Item Completeness",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Captured all 4 actionable deliverables."
+          },
+          {
+            "criterion": "Owner Identification Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Task owners correctly attributed and unassigned tasks kept null."
+          },
+          {
+            "criterion": "Deadline Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Deadlines matched expected dates; missing deadlines kept null."
+          },
+          {
+            "criterion": "Evidence & Factual Consistency",
+            "score": 0,
+            "max_score": 2,
+            "feedback": "Prompt v1 lacks grounded evidence validation."
+          },
+          {
+            "criterion": "Handling of Missing Information",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Properly recorded missing information and unresolved discussions."
+          }
+        ],
+        "total_score": 12,
+        "max_score": 14,
+        "percentage": 86,
+        "hallucination_detected": false,
+        "missing_info_accuracy": true
+      },
+      "created_at": "2026-11-01T17:50:02.925Z"
+    },
+    {
+      "id": "3540e36e-acc9-4034-b1a7-3ac325228f46",
+      "meeting_id": null,
+      "prompt_version": "v1",
+      "test_case_name": "Normal Meeting",
+      "expected_result": {
+        "decisions": [
+          {
+            "decision": "The official public launch date is set for November 10th, 2026.",
+            "context": "Agreed by Sarah and David with consensus from the team."
+          }
+        ],
+        "action_items": [
+          {
+            "task": "Prepare the press release and email blast",
+            "owner": "David",
+            "deadline": "2026-10-25",
+            "priority": "high"
+          },
+          {
+            "task": "Update the external developer documentation",
+            "owner": "Alex",
+            "deadline": "2026-11-01",
+            "priority": "medium"
+          }
+        ],
+        "missing_information": []
+      },
+      "actual_result": {
+        "meeting_summary": "The team discussed Q3 Product Launch Sync and reviewed project progress.",
+        "key_discussion_points": [
+          "Team status updates",
+          "Review of deliverables and next steps"
+        ],
+        "decisions": [
+          {
+            "decision": "The official public launch date is set for November 10th, 2026.",
+            "context": "Agreed by Sarah and David with consensus from the team."
+          }
+        ],
+        "action_items": [
+          {
+            "task": "Prepare the press release and email blast",
+            "owner": "David",
+            "deadline": "2026-10-25",
+            "priority": "high",
+            "status": "pending",
+            "source_evidence": ""
+          },
+          {
+            "task": "Update the external developer documentation",
+            "owner": "Alex",
+            "deadline": "2026-11-01",
+            "priority": "medium",
+            "status": "pending",
+            "source_evidence": ""
+          }
+        ],
+        "missing_information": []
+      },
+      "evaluation_score": 12,
+      "evaluation_status": "pass",
+      "evaluation_details": {
+        "criteria_scores": [
+          {
+            "criterion": "Summary Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Comprehensive executive summary capturing meeting intent."
+          },
+          {
+            "criterion": "Decision Extraction Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Accurately identified all 1 decisions."
+          },
+          {
+            "criterion": "Action-Item Completeness",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Captured all 2 actionable deliverables."
+          },
+          {
+            "criterion": "Owner Identification Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Task owners correctly attributed and unassigned tasks kept null."
+          },
+          {
+            "criterion": "Deadline Accuracy",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Deadlines matched expected dates; missing deadlines kept null."
+          },
+          {
+            "criterion": "Evidence & Factual Consistency",
+            "score": 0,
+            "max_score": 2,
+            "feedback": "Prompt v1 lacks grounded evidence validation."
+          },
+          {
+            "criterion": "Handling of Missing Information",
+            "score": 2,
+            "max_score": 2,
+            "feedback": "Properly recorded missing information and unresolved discussions."
+          }
+        ],
+        "total_score": 12,
+        "max_score": 14,
+        "percentage": 86,
+        "hallucination_detected": false,
+        "missing_info_accuracy": true
+      },
+      "created_at": "2026-11-01T17:50:02.924Z"
+    }
+  ],
+  "automation_logs": [
+    {
+      "id": "9f8ebc7b-f6d7-432d-aee9-1ab8c7ae9b53",
+      "meeting_id": "f7f9992c-e35e-4ac8-a927-4f0fd0cad1ed",
+      "event_type": "meeting.processing_status.completed",
+      "execution_status": "success",
+      "execution_details": {
+        "source": "database_webhook:meeting_completed",
+        "trigger_event": "UPDATE(processing_status -> completed)",
+        "meeting_id": "f7f9992c-e35e-4ac8-a927-4f0fd0cad1ed",
+        "meeting_title": "Budget Allocation & CRM Migration Debate",
+        "meeting_date": "2026-10-27",
+        "total_action_items": 1,
+        "new_tasks_added": 0,
+        "pending_tasks": 1,
+        "idempotency_guarantee": "Duplicate execution prevented by (meeting_id, task_description) constraint",
+        "timestamp": "2026-11-01T17:58:33.179Z"
+      },
+      "executed_at": "2026-11-01T17:58:33.179Z"
+    },
+    {
+      "id": "0666a65b-9695-4801-ae3f-6bda871dcdcc",
+      "meeting_id": "a47d0f22-c172-481a-be8c-fd65b1242e16",
+      "event_type": "meeting.processing_status.completed",
+      "execution_status": "success",
+      "execution_details": {
+        "source": "database_webhook:meeting_completed",
+        "trigger_event": "UPDATE(processing_status -> completed)",
+        "meeting_id": "a47d0f22-c172-481a-be8c-fd65b1242e16",
+        "meeting_title": "Design System Modernization",
+        "meeting_date": "2026-10-25",
+        "total_action_items": 1,
+        "new_tasks_added": 0,
+        "pending_tasks": 1,
+        "idempotency_guarantee": "Duplicate execution prevented by (meeting_id, task_description) constraint",
+        "timestamp": "2026-11-01T17:58:33.178Z"
+      },
+      "executed_at": "2026-11-01T17:58:33.178Z"
+    },
+    {
+      "id": "3df0ee4d-3f29-4d63-a7ce-ec7fb11c53aa",
+      "meeting_id": "47d00aa7-51ef-4e1a-8fe2-7135d8d2f392",
+      "event_type": "meeting.processing_status.completed",
+      "execution_status": "success",
+      "execution_details": {
+        "source": "database_webhook:meeting_completed",
+        "trigger_event": "UPDATE(processing_status -> completed)",
+        "meeting_id": "47d00aa7-51ef-4e1a-8fe2-7135d8d2f392",
+        "meeting_title": "Infrastructure Incident Follow-up",
+        "meeting_date": "2026-10-22",
+        "total_action_items": 1,
+        "new_tasks_added": 0,
+        "pending_tasks": 1,
+        "idempotency_guarantee": "Duplicate execution prevented by (meeting_id, task_description) constraint",
+        "timestamp": "2026-11-01T17:58:33.177Z"
+      },
+      "executed_at": "2026-11-01T17:58:33.177Z"
+    },
+    {
+      "id": "c4cdd0ba-fe5c-4dd2-8f95-5ffb843f23e9",
+      "meeting_id": "91bd387d-2455-424c-b825-9aad5e1ef9fb",
+      "event_type": "meeting.processing_status.completed",
+      "execution_status": "success",
+      "execution_details": {
+        "source": "database_webhook:meeting_completed",
+        "trigger_event": "UPDATE(processing_status -> completed)",
+        "meeting_id": "91bd387d-2455-424c-b825-9aad5e1ef9fb",
+        "meeting_title": "Sprint 42 Architecture & Security Review",
+        "meeting_date": "2026-10-20",
+        "total_action_items": 4,
+        "new_tasks_added": 0,
+        "pending_tasks": 4,
+        "idempotency_guarantee": "Duplicate execution prevented by (meeting_id, task_description) constraint",
+        "timestamp": "2026-11-01T17:58:33.175Z"
+      },
+      "executed_at": "2026-11-01T17:58:33.175Z"
+    },
+    {
+      "id": "f282263d-9c65-4bd3-b0f4-5d41ad229615",
+      "meeting_id": "cd8cf742-c73d-4b91-9fb0-b6ccdbb7d3a6",
+      "event_type": "meeting.processing_status.completed",
+      "execution_status": "success",
+      "execution_details": {
+        "source": "database_webhook:meeting_completed",
+        "trigger_event": "UPDATE(processing_status -> completed)",
+        "meeting_id": "cd8cf742-c73d-4b91-9fb0-b6ccdbb7d3a6",
+        "meeting_title": "Q3 Product Launch Sync",
+        "meeting_date": "2026-10-15",
+        "total_action_items": 2,
+        "new_tasks_added": 0,
+        "pending_tasks": 2,
+        "idempotency_guarantee": "Duplicate execution prevented by (meeting_id, task_description) constraint",
+        "timestamp": "2026-11-01T17:58:33.174Z"
+      },
+      "executed_at": "2026-11-01T17:58:33.174Z"
+    }
+  ]
+}
