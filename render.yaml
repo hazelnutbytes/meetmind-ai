@@ -1,0 +1,56 @@
+services:
+  # ----------------------------------------------------------------------------
+  # 1. Backend Web Service (Node.js + Express API)
+  # ----------------------------------------------------------------------------
+  - type: web
+    name: meetmind-ai-backend
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: npm install && npm --workspace=server run build
+    startCommand: npm --workspace=server start
+    healthCheckPath: /api/health
+    envVars:
+      - key: PORT
+        value: 5001
+      - key: NODE_ENV
+        value: production
+      - key: GEMINI_MODEL
+        value: gemini-3.8-flash
+      - key: CLIENT_URL
+        fromService:
+          type: web
+          name: meetmind-ai-frontend
+          property: url
+      # Secrets entered in Render Dashboard settings:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: SUPABASE_WEBHOOK_SECRET
+        sync: false
+
+  # ----------------------------------------------------------------------------
+  # 2. Frontend Static Site (Vite + React)
+  # ----------------------------------------------------------------------------
+  - type: web
+    name: meetmind-ai-frontend
+    runtime: static
+    plan: free
+    region: oregon
+    buildCommand: npm install && npm --workspace=client run build
+    staticPublishPath: client/dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: meetmind-ai-backend
+          property: url
