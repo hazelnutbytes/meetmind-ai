@@ -10,8 +10,22 @@ import {
 } from '../types';
 
 const rawApiUrl = import.meta.env.VITE_API_URL ? String(import.meta.env.VITE_API_URL).trim().replace(/\/+$/, '') : '';
-const formattedApiUrl = rawApiUrl && !rawApiUrl.startsWith('http') ? `https://${rawApiUrl}` : rawApiUrl;
-const API_BASE = formattedApiUrl ? `${formattedApiUrl}/api` : '/api';
+let cleanUrl = rawApiUrl;
+
+if (cleanUrl) {
+  // If cleanUrl is an internal Render service slug without a domain (no dot) and not localhost
+  if (!cleanUrl.includes('.') && !cleanUrl.includes('localhost') && !cleanUrl.includes('127.0.0.1')) {
+    cleanUrl = `${cleanUrl}.onrender.com`;
+  }
+  if (!cleanUrl.startsWith('http://') && !cleanUrl.startsWith('https://')) {
+    cleanUrl = `https://${cleanUrl}`;
+  }
+} else if (typeof window !== 'undefined' && window.location.hostname.endsWith('.onrender.com')) {
+  // Automatic fallback for Render deployments if env var was not provided at build time
+  cleanUrl = 'https://meetmind-ai-backend-97mx.onrender.com';
+}
+
+const API_BASE = cleanUrl ? `${cleanUrl}/api` : '/api';
 
 export const api = {
   // Meetings

@@ -13,10 +13,24 @@ const app = express();
 
 // Middleware
 const allowedOriginEnv = process.env.CLIENT_URL || process.env.CORS_ORIGIN;
-let originList: (string | RegExp)[] = ['http://localhost:3000', 'http://127.0.0.1:3000'];
+let originList: (string | RegExp)[] = [
+  'http://localhost:3000',
+  'http://127.0.0.1:3000',
+  'http://localhost:5173',
+  'http://127.0.0.1:5173',
+  /^https:\/\/.*\.onrender\.com$/
+];
+
 if (allowedOriginEnv) {
   const clean = allowedOriginEnv.trim().replace(/\/+$/, '');
   originList.push(clean);
+  if (!clean.includes('.') && !clean.includes('localhost') && !clean.includes('127.0.0.1')) {
+    originList.push(
+      `https://${clean}.onrender.com`,
+      `http://${clean}.onrender.com`,
+      `${clean}.onrender.com`
+    );
+  }
   if (!clean.startsWith('http')) {
     originList.push(`https://${clean}`, `http://${clean}`);
   } else {
@@ -25,7 +39,7 @@ if (allowedOriginEnv) {
 }
 
 const corsOptions: CorsOptions = {
-  origin: allowedOriginEnv ? originList : '*',
+  origin: originList,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'x-webhook-secret']
