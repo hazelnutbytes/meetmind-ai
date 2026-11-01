@@ -1,5 +1,5 @@
-import express from 'express';
-import cors from 'cors';
+import express, { Request, Response } from 'express';
+import cors, { CorsOptions } from 'cors';
 import { config } from './config/index.js';
 import { meetingsRouter } from './routes/meetings.js';
 import { actionsRouter } from './routes/actions.js';
@@ -24,8 +24,8 @@ if (allowedOriginEnv) {
   }
 }
 
-const corsOptions: cors.CorsOptions = {
-  origin: allowedOriginEnv ? (originList as any) : '*',
+const corsOptions: CorsOptions = {
+  origin: allowedOriginEnv ? originList : '*',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'x-webhook-secret']
@@ -36,7 +36,7 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Health Check
-app.get('/api/health', (_req, res) => {
+app.get('/api/health', (_req: Request, res: Response) => {
   res.json({
     status: 'ok',
     service: 'MeetMind AI Server',

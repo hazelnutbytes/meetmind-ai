@@ -7,7 +7,7 @@ services:
     env: node
     plan: free
     region: oregon
-    buildCommand: npm install && npm --workspace=server run build
+    buildCommand: npm install --include=dev && npm --workspace=server run build
     startCommand: npm --workspace=server start
     healthCheckPath: /api/health
     envVars:
@@ -40,7 +40,7 @@ services:
   - type: web
     name: meetmind-ai-frontend
     env: static
-    buildCommand: npm install && npm --workspace=client run build
+    buildCommand: npm install --include=dev && npm --workspace=client run build
     staticPublishPath: client/dist
     routes:
       - type: rewrite
