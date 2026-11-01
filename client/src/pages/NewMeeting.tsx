@@ -30,6 +30,7 @@ export const NewMeeting: React.FC<NewMeetingProps> = ({ onMeetingProcessed }) =>
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [failedMeetingId, setFailedMeetingId] = useState<string | null>(null);
 
   const initialStages: StageInfo[] = [
     {
@@ -156,7 +157,48 @@ export const NewMeeting: React.FC<NewMeetingProps> = ({ onMeetingProcessed }) =>
       }, 600);
     } catch (err: any) {
       console.error('Submission error:', err);
-      setErrorMessage(err.message || 'Pipeline failed during processing.');
+      setFailedMeetingId(err.meetingId || null);
+      setErrorMessage(err.message || 'Gemini is temporarily unavailable. Please try again.');
+      setStages((prev) =>
+        prev.map((s) => (s.status === 'active' ? { ...s, status: 'failed' } : s))
+      );
+      setIsProcessing(false);
+    }
+  };
+
+  const handleRetry = async () => {
+    if (!failedMeetingId) {
+      handleSubmit(new Event('submit') as any);
+      return;
+    }
+
+    setErrorMessage(null);
+    setIsProcessing(true);
+
+    // Keep stage 1 completed, stage 2 active
+    setStages([
+      { ...initialStages[0], status: 'completed' },
+      { ...initialStages[1], status: 'active' },
+      { ...initialStages[2], status: 'pending' },
+      { ...initialStages[3], status: 'pending' }
+    ]);
+
+    try {
+      const result = await api.retryMeeting(failedMeetingId, promptVersion);
+
+      setStages([
+        { ...initialStages[0], status: 'completed' },
+        { ...initialStages[1], status: 'completed' },
+        { ...initialStages[2], status: 'completed' },
+        { ...initialStages[3], status: 'completed' }
+      ]);
+
+      setTimeout(() => {
+        onMeetingProcessed(result.meeting.id);
+      }, 600);
+    } catch (err: any) {
+      console.error('Retry error:', err);
+      setErrorMessage(err.message || 'Gemini is temporarily unavailable. Please try again.');
       setStages((prev) =>
         prev.map((s) => (s.status === 'active' ? { ...s, status: 'failed' } : s))
       );
@@ -177,7 +219,12 @@ export const NewMeeting: React.FC<NewMeetingProps> = ({ onMeetingProcessed }) =>
 
       {/* Stepper display during or after processing */}
       {(isProcessing || errorMessage) && (
-        <ProcessingStepper stages={stages} errorMessage={errorMessage || undefined} />
+        <ProcessingStepper
+          stages={stages}
+          errorMessage={errorMessage || undefined}
+          onRetry={handleRetry}
+          isRetrying={isProcessing}
+        />
       )}
 
       {/* Main Submission Form */}

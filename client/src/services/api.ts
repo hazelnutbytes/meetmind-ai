@@ -49,7 +49,37 @@ export const api = {
       body: JSON.stringify(payload)
     });
     const data = await res.json();
-    if (!res.ok) throw new Error(data.error || 'Failed to submit meeting transcript');
+    if (!res.ok) {
+      const err: any = new Error(data.error || 'Failed to submit meeting transcript');
+      err.meetingId = data.meetingId;
+      err.isRetryable = data.isRetryable;
+      throw err;
+    }
+    return data;
+  },
+
+  async retryMeeting(
+    meetingId: string,
+    prompt_version: PromptVersion = 'v3'
+  ): Promise<{
+    success: boolean;
+    meeting: Meeting;
+    minutes: MeetingMinutes;
+    action_items: ActionItem[];
+    automation: any;
+  }> {
+    const res = await fetch(`${API_BASE}/meetings/${meetingId}/retry`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt_version })
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      const err: any = new Error(data.error || 'Failed to retry meeting extraction');
+      err.meetingId = data.meetingId || meetingId;
+      err.isRetryable = data.isRetryable;
+      throw err;
+    }
     return data;
   },
 

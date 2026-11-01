@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckCircle2, Clock, AlertCircle, Loader2 } from 'lucide-react';
+import { CheckCircle2, Clock, AlertCircle, Loader2, RefreshCw } from 'lucide-react';
 
 export interface StageInfo {
   step: number;
@@ -11,11 +11,15 @@ export interface StageInfo {
 interface ProcessingStepperProps {
   stages: StageInfo[];
   errorMessage?: string;
+  onRetry?: () => void;
+  isRetrying?: boolean;
 }
 
 export const ProcessingStepper: React.FC<ProcessingStepperProps> = ({
   stages,
-  errorMessage
+  errorMessage,
+  onRetry,
+  isRetrying = false
 }) => {
   return (
     <div className="bg-white border border-sand rounded-lg p-6 shadow-sm">
@@ -81,11 +85,24 @@ export const ProcessingStepper: React.FC<ProcessingStepperProps> = ({
       </div>
 
       {errorMessage && (
-        <div className="mt-4 p-3.5 rounded bg-red-50 border border-red-200 text-red-700 text-xs flex items-start space-x-2">
-          <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
-          <div>
-            <span className="font-semibold">Pipeline Execution Blocked:</span> {errorMessage}
+        <div className="mt-4 p-4 rounded-lg bg-red-50 border border-red-200 text-red-800 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
+          <div className="flex items-start space-x-2.5">
+            <AlertCircle className="w-4 h-4 shrink-0 text-red-600 mt-0.5" />
+            <div>
+              <span className="font-bold text-red-900 block sm:inline mr-1">Extraction Paused:</span>
+              <span>{errorMessage}</span>
+            </div>
           </div>
+          {onRetry && (
+            <button
+              onClick={onRetry}
+              disabled={isRetrying}
+              className="inline-flex items-center space-x-1.5 bg-terracotta hover:bg-terracotta-hover disabled:opacity-50 text-white px-3.5 py-1.5 rounded text-xs font-semibold shrink-0 shadow-sm transition-colors"
+            >
+              <RefreshCw className={`w-3.5 h-3.5 ${isRetrying ? 'animate-spin' : ''}`} />
+              <span>{isRetrying ? 'Retrying...' : 'Retry Extraction'}</span>
+            </button>
+          )}
         </div>
       )}
     </div>

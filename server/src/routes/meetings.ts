@@ -47,8 +47,10 @@ meetingsRouter.post('/', async (req: Request, res: Response): Promise<void> => {
     } catch (aiErr: any) {
       console.error('[Stage 2 Error] AI extraction failed:', aiErr.message);
       await db.updateMeetingStatus(meetingId, 'failed');
-      res.status(502).json({
-        error: `AI Extraction Failed: ${aiErr.message}`,
+      const statusCode = aiErr.statusCode || 503;
+      res.status(statusCode).json({
+        error: aiErr.message || 'Gemini is temporarily unavailable. Please try again.',
+        isRetryable: true,
         stage: 'ai_extraction',
         meetingId
       });
@@ -165,6 +167,102 @@ meetingsRouter.get('/:id', async (req: Request, res: Response): Promise<void> =>
     });
   } catch (err: any) {
     res.status(500).json({ error: err.message });
+  }
+});
+
+// POST /api/meetings/:id/retry - Retry extraction on an existing meeting record without creating duplicates
+meetingsRouter.post('/:id/retry', async (req: Request, res: Response): Promise<void> => {
+  const meetingId = Array.isArray(req.params.id) ? req.params.id[0] : String(req.params.id);
+  const prompt_version = req.body.prompt_version;
+  const version: PromptVersion = ['v1', 'v2', 'v3'].includes(prompt_version) ? prompt_version : 'v3';
+
+  try {
+    const existingMeeting = await db.getMeeting(meetingId);
+    if (!existingMeeting) {
+      res.status(404).json({ error: `Meeting ${meetingId} not found to retry.` });
+      return;
+    }
+
+    console.log(`[Meeting Retry] Retrying extraction for meeting: "${existingMeeting.title}" (${meetingId})...`);
+    await db.updateMeetingStatus(meetingId, 'processing');
+
+    // Call Gemini with automatic exponential backoff
+    let aiOutput;
+    try {
+      aiOutput = await processTranscriptWithGemini(
+        existingMeeting.transcript,
+        existingMeeting.title,
+        existingMeeting.meeting_date,
+        version
+      );
+    } catch (aiErr: any) {
+      console.error('[Meeting Retry Error] AI extraction failed on retry:', aiErr.message);
+      await db.updateMeetingStatus(meetingId, 'failed');
+      const statusCode = aiErr.statusCode || 503;
+      res.status(statusCode).json({
+        error: aiErr.message || 'Gemini is temporarily unavailable. Please try again.',
+        isRetryable: true,
+        stage: 'ai_extraction',
+        meetingId
+      });
+      return;
+    }
+
+    // Validation
+    const validationResult = validateGeneralMeetingOutput(aiOutput);
+
+    // Persist / update minutes
+    const now = new Date().toISOString();
+    const existingMinutes = await db.getMeetingMinutes(meetingId);
+    const minutes: MeetingMinutes = {
+      id: existingMinutes?.id || uuidv4(),
+      meeting_id: meetingId,
+      summary: aiOutput.meeting_summary,
+      key_discussion_points: aiOutput.key_discussion_points,
+      decisions: aiOutput.decisions,
+      missing_information: aiOutput.missing_information,
+      generated_at: now
+    };
+    await db.saveMeetingMinutes(minutes);
+
+    // Idempotent upsert of action items (prevents duplicate tasks)
+    const actionItems: ActionItem[] = aiOutput.action_items.map((item) => ({
+      id: uuidv4(),
+      meeting_id: meetingId,
+      task_description: item.task,
+      owner: item.owner,
+      deadline: item.deadline,
+      priority: item.priority,
+      status: item.status || 'pending',
+      source_evidence: item.source_evidence || null,
+      created_at: now,
+      updated_at: now
+    }));
+
+    await db.saveActionItems(actionItems);
+    await db.updateMeetingStatus(meetingId, 'completed');
+    const updatedMeeting = (await db.getMeeting(meetingId)) || existingMeeting;
+
+    // Trigger automation & logging
+    const automationResult = await triggerMeetingCompletionAutomation(updatedMeeting, actionItems);
+
+    res.json({
+      success: true,
+      message: 'Meeting retry processed successfully without duplicates.',
+      meeting: updatedMeeting,
+      minutes,
+      action_items: actionItems,
+      validation: validationResult,
+      automation: automationResult
+    });
+  } catch (err: any) {
+    console.error('Unhandled retry error:', err);
+    await db.updateMeetingStatus(meetingId, 'failed');
+    res.status(500).json({
+      error: err.message || 'Internal server error while retrying meeting extraction.',
+      stage: 'retry_pipeline',
+      meetingId
+    });
   }
 });
 

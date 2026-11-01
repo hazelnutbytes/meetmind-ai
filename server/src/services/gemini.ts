@@ -87,6 +87,35 @@ Meeting Transcript:
 OUTPUT REQUIREMENTS: Return valid JSON with keys: meeting_summary, key_discussion_points, decisions, action_items, missing_information.`;
 }
 
+// Check if error is transient and retryable (503, 429, 500, network/demand spikes)
+export function isTransientError(err: any): boolean {
+  if (!err) return false;
+  const msg = (err.message || '').toLowerCase();
+  const status = err.status || err.statusCode || err.code;
+
+  if (status === 503 || status === 429 || status === 500 || status === 'UNAVAILABLE') {
+    return true;
+  }
+
+  return (
+    msg.includes('503') ||
+    msg.includes('429') ||
+    msg.includes('500') ||
+    msg.includes('unavailable') ||
+    msg.includes('high demand') ||
+    msg.includes('resource_exhausted') ||
+    msg.includes('rate limit') ||
+    msg.includes('fetch failed') ||
+    msg.includes('overloaded') ||
+    msg.includes('econnreset') ||
+    msg.includes('etimedout')
+  );
+}
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 export async function processTranscriptWithGemini(
   transcript: string,
   title: string = 'Untitled Meeting',
@@ -97,79 +126,114 @@ export async function processTranscriptWithGemini(
     throw new Error('GEMINI_API_KEY is not configured. Please set GEMINI_API_KEY in your .env file.');
   }
 
-  let promptTemplate = loadPromptFile(version);
+  const promptTemplate = loadPromptFile(version);
   const prompt = promptTemplate
     .replace(/{{MEETING_TITLE}}/g, title)
     .replace(/{{MEETING_DATE}}/g, meetingDate)
     .replace(/{{TRANSCRIPT}}/g, transcript);
 
-  const modelCandidates = [
+  // Model hierarchy: configured primary first, then supported flash fallbacks
+  const rawCandidates = [
     config.geminiModel,
     'gemini-3.8-flash',
     'gemini-3.5-flash',
     'gemini-flash-latest',
     'gemini-2.5-flash'
   ];
+  // Deduplicate candidates preserving order
+  const modelCandidates = Array.from(new Set(rawCandidates.filter(Boolean)));
 
-  // Try 1: Modern @google/genai SDK
+  const MAX_RETRIES = 3;
+  const INITIAL_BACKOFF_MS = 2000; // 2s, 4s, 8s
   const ai = new GoogleGenAI({ apiKey: config.geminiApiKey });
-  for (const modelName of modelCandidates) {
-    try {
-      const response = await ai.models.generateContent({
-        model: modelName,
-        contents: prompt,
-        config: {
-          responseMimeType: 'application/json',
-          temperature: version === 'v3' ? 0.1 : 0.4
-        }
-      });
-
-      if (response && response.text) {
-        const cleaned = response.text
-          .replace(/^```json\s*/i, '')
-          .replace(/^```\s*/i, '')
-          .replace(/```\s*$/i, '')
-          .trim();
-
-        const parsed: StructuredMeetingOutput = JSON.parse(cleaned);
-        return sanitizeStructuredOutput(parsed);
-      }
-    } catch (err: any) {
-      console.warn(`[GenAI SDK] Model ${modelName} attempt:`, err.message);
-    }
-  }
-
-  // Try 2: Fallback to @google/generative-ai SDK
   const genAI = new GoogleGenerativeAI(config.geminiApiKey);
+
   let lastError: any = null;
 
   for (const modelName of modelCandidates) {
-    try {
-      const model = genAI.getGenerativeModel({
-        model: modelName,
-        generationConfig: {
-          responseMimeType: 'application/json',
-          temperature: version === 'v3' ? 0.1 : 0.4
+    console.log(`[Gemini Extraction] Attempting model candidate: "${modelName}" (Prompt ${version.toUpperCase()})`);
+
+    let delayMs = INITIAL_BACKOFF_MS;
+    for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+      try {
+        // Attempt via @google/genai first
+        let responseText: string | null = null;
+        try {
+          const response = await ai.models.generateContent({
+            model: modelName,
+            contents: prompt,
+            config: {
+              responseMimeType: 'application/json',
+              temperature: version === 'v3' ? 0.1 : 0.4
+            }
+          });
+          if (response && response.text) {
+            responseText = response.text;
+          }
+        } catch (sdk1Err: any) {
+          // If @google/genai threw, try fallback SDK @google/generative-ai
+          if (!isTransientError(sdk1Err)) {
+            throw sdk1Err; // Non-retryable error (e.g. invalid arg)
+          }
+          console.warn(`[Gemini] ${modelName} via @google/genai attempt ${attempt} failed: ${sdk1Err.message}. Trying @google/generative-ai...`);
+          
+          const model = genAI.getGenerativeModel({
+            model: modelName,
+            generationConfig: {
+              responseMimeType: 'application/json',
+              temperature: version === 'v3' ? 0.1 : 0.4
+            }
+          });
+          const result = await model.generateContent(prompt);
+          responseText = result.response.text();
         }
-      });
 
-      const result = await model.generateContent(prompt);
-      const text = result.response.text();
+        if (responseText) {
+          const cleaned = responseText
+            .replace(/^```json\s*/i, '')
+            .replace(/^```\s*/i, '')
+            .replace(/```\s*$/i, '')
+            .trim();
 
-      const cleaned = text
-        .replace(/^```json\s*/i, '')
-        .replace(/^```\s*/i, '')
-        .replace(/```\s*$/i, '')
-        .trim();
+          const parsed: StructuredMeetingOutput = JSON.parse(cleaned);
+          console.log(`✅ [Gemini Extraction Success] Processed successfully using model "${modelName}" on attempt ${attempt}.`);
+          return sanitizeStructuredOutput(parsed);
+        }
+      } catch (err: any) {
+        lastError = err;
+        const transient = isTransientError(err);
 
-      const parsed: StructuredMeetingOutput = JSON.parse(cleaned);
-      return sanitizeStructuredOutput(parsed);
-    } catch (err: any) {
-      lastError = err;
+        if (transient && attempt < MAX_RETRIES) {
+          console.warn(
+            `⚠️ [Gemini Transient Error] Model "${modelName}" attempt ${attempt}/${MAX_RETRIES} failed (${err.message}). ` +
+            `Applying exponential backoff: retrying in ${delayMs / 1000}s...`
+          );
+          await sleep(delayMs);
+          delayMs *= 2; // 2s -> 4s -> 8s
+        } else {
+          console.warn(
+            `❌ [Gemini Model Failed] Model "${modelName}" attempt ${attempt}/${MAX_RETRIES} failed: ${err.message}. ` +
+            `${attempt >= MAX_RETRIES ? 'Max retries reached for this model.' : 'Non-retryable error.'} Falling back to next candidate if available.`
+          );
+          break; // Break retry loop to try next model candidate
+        }
+      }
     }
   }
 
-  throw new Error(`Gemini processing failed: ${lastError?.message || 'Unable to generate response'}`);
+  // All candidates and retries exhausted
+  const is503 = isTransientError(lastError);
+  console.error(`🛑 [Gemini Service Exhausted] All models and retries failed. Final error: ${lastError?.message}`);
+
+  const userFacingMessage = is503
+    ? 'Gemini is temporarily unavailable. Please try again.'
+    : `AI Extraction Failed: ${lastError?.message || 'Unable to generate response'}`;
+
+  const failureError: any = new Error(userFacingMessage);
+  failureError.statusCode = is503 ? 503 : 502;
+  failureError.isRetryable = true;
+  failureError.originalError = lastError?.message;
+  throw failureError;
 }
 
 function sanitizeStructuredOutput(output: any): StructuredMeetingOutput {

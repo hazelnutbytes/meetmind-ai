@@ -39,6 +39,7 @@ export const MeetingDetail: React.FC<MeetingDetailProps> = ({
   const [isEditing, setIsEditing] = useState(false);
   const [editedSummary, setEditedSummary] = useState('');
   const [isSaving, setIsSaving] = useState(false);
+  const [isRetrying, setIsRetrying] = useState(false);
   const [activeTab, setActiveTab] = useState<'minutes' | 'actions' | 'transcript' | 'automation'>('minutes');
 
   useEffect(() => {
@@ -76,6 +77,18 @@ export const MeetingDetail: React.FC<MeetingDetailProps> = ({
       alert(`Failed to save changes: ${err.message}`);
     } finally {
       setIsSaving(false);
+    }
+  };
+
+  const handleRetryMeeting = async () => {
+    try {
+      setIsRetrying(true);
+      await api.retryMeeting(meetingId, 'v3');
+      await loadMeetingData();
+    } catch (err: any) {
+      alert(`Retry failed: ${err.message}`);
+    } finally {
+      setIsRetrying(false);
     }
   };
 
@@ -136,6 +149,16 @@ export const MeetingDetail: React.FC<MeetingDetailProps> = ({
         </button>
 
         <div className="flex items-center space-x-3">
+          {meeting.processing_status === 'failed' && (
+            <button
+              onClick={handleRetryMeeting}
+              disabled={isRetrying}
+              className="flex items-center space-x-1.5 bg-terracotta hover:bg-terracotta-hover text-white px-3.5 py-1.5 rounded text-xs font-semibold shadow-sm transition-colors"
+            >
+              <span>{isRetrying ? 'Retrying Extraction...' : 'Retry Extraction'}</span>
+            </button>
+          )}
+
           {activeTab === 'minutes' && (
             <>
               {isEditing ? (
@@ -168,6 +191,25 @@ export const MeetingDetail: React.FC<MeetingDetailProps> = ({
           </button>
         </div>
       </div>
+
+      {meeting.processing_status === 'failed' && (
+        <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-800 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
+          <div className="flex items-start space-x-2.5">
+            <AlertCircle className="w-4 h-4 shrink-0 text-red-600 mt-0.5" />
+            <div>
+              <span className="font-bold text-red-900 block sm:inline mr-1">Extraction Incomplete:</span>
+              <span>Gemini was temporarily unavailable during processing. You can retry extraction without duplicating records.</span>
+            </div>
+          </div>
+          <button
+            onClick={handleRetryMeeting}
+            disabled={isRetrying}
+            className="inline-flex items-center space-x-1.5 bg-terracotta hover:bg-terracotta-hover disabled:opacity-50 text-white px-4 py-2 rounded text-xs font-semibold shrink-0 shadow-sm transition-colors"
+          >
+            <span>{isRetrying ? 'Retrying Extraction...' : 'Retry Extraction'}</span>
+          </button>
+        </div>
+      )}
 
       {/* 1. Meeting Overview Header */}
       <div className="bg-white border border-sand rounded-xl p-6 shadow-sm space-y-4">
